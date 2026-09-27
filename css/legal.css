@@ -1,0 +1,121 @@
+/* Shared prose styling for the standalone legal / support pages.
+   Reuses the design tokens and header/footer from style.css. */
+
+.legal-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 168px var(--section-inline) var(--section-block);
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.legal-main h1 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 52px);
+  color: var(--ink-strong);
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.legal-meta {
+  color: var(--ink-faint);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+
+.legal-callout {
+  background: var(--surface-1);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card);
+  padding: 20px 22px;
+  color: var(--ink-muted);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 48px;
+}
+
+.legal-main h2 {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink-strong);
+  margin-top: 44px;
+  margin-bottom: 14px;
+}
+
+.legal-main h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-strong);
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+
+.legal-main p {
+  color: var(--ink-body);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.legal-main ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.legal-main li {
+  color: var(--ink-body);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+
+.legal-main a.inline-link {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 44px;
+  padding: 0;
+}
+.legal-toc a {
+  font-size: 13px;
+  color: var(--ink-muted);
+  border-bottom: 1px solid transparent;
+}
+.legal-toc a:hover { color: var(--brand); border-color: var(--brand); }
+
+.support-card {
+  background: var(--surface-1);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card-lg);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.support-card h3 { margin-top: 0; }
+.support-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--brand-strong);
+  color: #051324;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  margin-top: 8px;
+}
