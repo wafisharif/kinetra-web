@@ -1,373 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kinetra — Movement analysis, from any phone camera</title>
-<meta name="description" content="Kinetra turns a phone camera into a movement-analysis lab: pose-tracking, rep counting, and rehab-style scoring for six clinical task types, no wearables required. Currently in private iOS beta." />
 
-<link rel="icon" type="image/png" href="assets/images/favicon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Urbanist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css" />
-<script>
-  // Progressive enhancement: only browsers that run this (and support
-  // IntersectionObserver, checked again in main.js) ever get scroll-reveal
-  // animations. Everyone else — no-JS, crawlers, screenshot/print tools —
-  // sees full content immediately. See css/style.css's .reveal rules.
-  if ('IntersectionObserver' in window) {
-    document.documentElement.classList.add('js-reveal');
-  }
-</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinetra — Movement analysis, from any phone camera</title>
+  <meta name="description"
+    content="Kinetra turns a phone camera into a movement-analysis lab: pose-tracking, rep counting, and rehab-style scoring for six clinical task types, no wearables required. Currently in private iOS beta." />
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Urbanist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // Progressive enhancement: only browsers that run this (and support
+    // IntersectionObserver, checked again in main.js) ever get scroll-reveal
+    // animations. Everyone else — no-JS, crawlers, screenshot/print tools —
+    // sees full content immediately. See css/style.css's .reveal rules.
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-reveal');
+    }
+  </script>
 </head>
+
 <body>
 
-<!-- Announcement banner -->
-<div class="banner">
-  <strong>Kinetra&nbsp;Beta</strong>
-  <span>Now running as a real ad hoc build on iOS hardware.</span>
-  <a href="#status">See project status →</a>
-</div>
+  <!-- Announcement banner -->
+  <div class="banner">
+    <strong>Kinetra&nbsp;Beta</strong>
+    <span>Now running as a real ad hoc build on iOS hardware.</span>
+    <a href="#status">See project status →</a>
+  </div>
 
-<!-- Nav -->
-<header class="site-header">
-  <div class="wrap nav">
-    <a href="#top" class="nav-brand">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M4 19L11 6L13 6L20 19" stroke="url(#navGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="navGrad" x1="4" y1="6" x2="20" y2="19"><stop stop-color="#bfe0ff"/><stop offset="1" stop-color="#3f90e0"/></linearGradient></defs></svg>
-      Kinetra
-    </a>
-    <nav class="nav-links">
-      <a href="#why">Why Kinetra</a>
-      <a href="#tasks">Task Coverage</a>
-      <a href="#product">Product</a>
-      <a href="#how">How it Works</a>
-      <a href="#insights">Daily Insights</a>
-      <a href="#status">Status</a>
-    </nav>
-    <div class="nav-actions">
-      <a class="icon-btn" href="https://github.com/wafisharif" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+  <!-- Nav -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="#top" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M4 19L11 6L13 6L20 19" stroke="url(#navGrad)" stroke-width="2.6" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <defs>
+            <linearGradient id="navGrad" x1="4" y1="6" x2="20" y2="19">
+              <stop stop-color="#bfe0ff" />
+              <stop offset="1" stop-color="#3f90e0" />
+            </linearGradient>
+          </defs>
+        </svg>
+        Kinetra
       </a>
-      <a class="btn btn-primary" href="https://apps.apple.com" target="_blank" rel="noopener">Join iOS beta</a>
-      <button class="nav-toggle" aria-label="Menu">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </div>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1>Track movement.<br/>Understand your <em class="accent" id="heroCycle">recovery</em>.</h1>
-        <p class="lede">Kinetra turns any phone camera into a pose-tracking lab — counting reps, scoring smoothness and symmetry, and fusing it with how you actually feel, without a single wearable.</p>
-        <div class="hero-cta-row">
-          <a class="btn btn-primary" href="#status">Join the iOS beta</a>
-          <a class="btn btn-secondary" href="https://github.com/wafisharif" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-            View source
-          </a>
-        </div>
-        <div class="hero-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
-          Video is analyzed and discarded — nothing is uploaded to train a model.
-        </div>
-      </div>
-
-      <div class="demo-panel reveal">
-        <div class="demo-panel-head">
-          <div class="demo-dots"><span></span><span></span><span></span></div>
-          <div class="demo-title">LIVE ANALYSIS PREVIEW</div>
-        </div>
-        <div class="demo-stage">
-          <div class="demo-task-label" id="heroTaskLabel">Gait</div>
-          <canvas id="heroCanvas" width="640" height="496" aria-label="Animated stick-figure pose demo"></canvas>
-          <div class="demo-readout">
-            <div class="metric-chip"><div class="k">Reps</div><div class="v" id="mRep">0</div></div>
-            <div class="metric-chip"><div class="k">Smoothness</div><div class="v good" id="mSmooth">92%</div></div>
-            <div class="metric-chip"><div class="k">Symmetry</div><div class="v good" id="mSym">96%</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="wrap marquee-label"><span class="micro-label">Built on</span></div>
-    <div class="marquee-track">
-      <span><b>MediaPipe</b> Pose</span>
-      <span><b>React Native</b> + Expo</span>
-      <span><b>Flask</b> Backend</span>
-      <span><b>Render</b> Cloud</span>
-      <span>Server-side AI Coaching</span>
-      <span><b>EAS</b> Native Build</span>
-      <span><b>MediaPipe</b> Pose</span>
-      <span><b>React Native</b> + Expo</span>
-      <span><b>Flask</b> Backend</span>
-      <span><b>Render</b> Cloud</span>
-      <span>Server-side AI Coaching</span>
-      <span><b>EAS</b> Native Build</span>
-    </div>
-  </div>
-
-  <!-- WHY KINETRA -->
-  <section id="why">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Why Kinetra</span>
-        <h2>Where generic fitness apps stop.</h2>
-        <p>Rep-counters tell you what you did. Kinetra tells you how well you did it, and whether that's changing over time.</p>
-      </div>
-      <div class="feature-list">
-        <div class="feature-item reveal">
-          <div class="num">01</div>
-          <h3>Camera-only pose tracking</h3>
-          <p>MediaPipe-based pose estimation runs on a normal video recording — no wearable sensors, no special hardware, no gym equipment.</p>
-        </div>
-        <div class="feature-item reveal">
-          <div class="num">02</div>
-          <h3>Per-limb calibration</h3>
-          <p>A one-time calibration flow learns your own observed range of motion per arm, so thresholds are relative to you, not a generic default.</p>
-        </div>
-        <div class="feature-item reveal">
-          <div class="num">03</div>
-          <h3>Honest, non-diagnostic coaching</h3>
-          <p>An optional AI coaching layer reads your scores and trends — never your video — and is explicit that it isn't a medical diagnosis.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TASK COVERAGE -->
-  <section id="tasks">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Task Coverage</span>
-        <h2>One camera, six movement tests.</h2>
-        <p>Every mode uses the same pose pipeline, tuned to the joints and rep pattern that matter for that task.</p>
-      </div>
-
-      <div class="task-tabs" id="taskTabs" role="tablist">
-        <button class="task-tab is-active" data-task="sit-to-stand" role="tab">Sit-to-Stand</button>
-        <button class="task-tab" data-task="reach" role="tab">Reach</button>
-        <button class="task-tab" data-task="arm-raise" role="tab">Arm Raise</button>
-        <button class="task-tab" data-task="gait" role="tab">Gait</button>
-        <button class="task-tab" data-task="balance" role="tab">Balance</button>
-        <button class="task-tab" data-task="tug" role="tab">Timed Up &amp; Go</button>
-      </div>
-
-      <div class="task-panel reveal">
-        <div class="task-panel-copy">
-          <span class="micro-label" id="taskEyebrow">SIT-TO-STAND</span>
-          <h3 id="taskTitle">Chair-rise strength &amp; control</h3>
-          <p id="taskDesc">Tracks hip and knee extension across each rise, flagging asymmetric weight-bearing and rushed, uncontrolled descents.</p>
-          <ul id="taskPoints">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Rep count &amp; tempo per rise</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Left/right knee-extension symmetry</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Descent-control smoothness score</li>
-          </ul>
-        </div>
-        <div class="task-panel-demo">
-          <canvas id="taskCanvas" width="640" height="520" aria-label="Animated task demo"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCT -->
-  <section id="product">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Product</span>
-        <h2>From a single recording to a movement history.</h2>
-      </div>
-      <div class="product-grid">
-        <div class="product-card reveal">
-          <span class="tag">Mobile</span>
-          <h3>Kinetra App</h3>
-          <p>The Expo / React Native client: guided recording, calibration, a Daily Check-In log, Trend and Insight screens, and a Team Screening mode for coaches running batches of athletes.</p>
-        </div>
-        <div class="product-card reveal">
-          <span class="tag">Backend</span>
-          <h3>Analysis Engine</h3>
-          <p>A Flask + MediaPipe service that turns a video into joint angles, rep counts, and per-task scores — deployed on Render, with an optional server-side AI coaching endpoint that never sees raw video.</p>
-        </div>
-      </div>
-      <div class="badge-row reveal">
-        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4Z"/></svg>Private beta</span>
-        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Non-diagnostic by design</span>
-        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Video discarded post-analysis</span>
-        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12h16M4 6h16M4 18h16"/></svg>CI on every push</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">How it Works</span>
-        <h2>Calibrated to your body, not a generic default.</h2>
-      </div>
-      <div class="deepdive reveal">
-        <div class="deepdive-top">
-          <div>
-            <span class="micro-label">CALIBRATION</span>
-            <h3>Kinetra Calibration</h3>
-            <p>Most rep-counters assume everyone's "full range of motion" looks the same. Kinetra records your own observed angle range per arm during a short calibration pass, then derives rep-detection thresholds from that — so a smaller natural range isn't scored as a failed rep.</p>
-            <a class="btn btn-secondary" href="#status">See it in the beta</a>
-          </div>
-          <ul class="step-list">
-            <li>
-              <div class="step-k">01</div>
-              <div class="step-t">Record a short baseline</div>
-              <div class="step-d">A few reps of the task at a comfortable range.</div>
-            </li>
-            <li>
-              <div class="step-k">02</div>
-              <div class="step-t">Calibrate per arm</div>
-              <div class="step-d">Left and right thresholds are stored independently.</div>
-            </li>
-            <li>
-              <div class="step-k">03</div>
-              <div class="step-t">Analyze against your baseline</div>
-              <div class="step-d">Every future session is scored relative to your own range.</div>
-            </li>
-            <li>
-              <div class="step-k">04</div>
-              <div class="step-t">Recalibrate any time</div>
-              <div class="step-d">Range of motion changes during recovery — your baseline can too.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="subfeature-row">
-          <div class="subfeature">
-            <h4>Per-side persistence</h4>
-            <p>Left and right calibration values are stored and applied independently, so one side's data can never silently override the other's.</p>
-          </div>
-          <div class="subfeature">
-            <h4>Six task profiles</h4>
-            <p>Sit-to-stand, reach, arm raise, gait, balance, and timed-up-and-go each get their own joint focus and thresholds.</p>
-          </div>
-          <div class="subfeature">
-            <h4>Recalibrate anytime</h4>
-            <p>A visible reset in Settings, since a moving target — recovery — needs a baseline that can move too.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DAILY INSIGHTS -->
-  <section id="insights">
-    <div class="wrap insights-grid">
-      <div>
-        <div class="section-head reveal" style="margin-bottom: 34px;">
-          <span class="eyebrow">Daily Insights</span>
-          <h2>Fusing how you feel with what the camera measures.</h2>
-          <p>A 30-second, no-camera check-in feeds a rule-based engine that looks for real patterns — not for reasons to send a notification.</p>
-        </div>
-        <div class="insight-blocks">
-          <div class="insight-block reveal">
-            <h4>Daily Check-In</h4>
-            <p>A local, no-network log: an overall feeling rating, multi-select soreness by body region, and an optional note. Takes under 30 seconds, and works even on days with no recording.</p>
-          </div>
-          <div class="insight-block reveal">
-            <h4>Insight Engine</h4>
-            <p>Cross-references check-ins against recorded scores: a streak counter, a soreness-to-score correlation per task, and a left/right asymmetry detector — each gated behind a minimum sample size, so it only speaks when there's evidence.</p>
-          </div>
-          <div class="insight-block reveal">
-            <h4>Evidence over engagement</h4>
-            <p>A correlation only surfaces with at least two comparable sore and clear sessions within a 36-hour window, and a real gap between them. No pattern, no insight — on purpose.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="stat-card reveal">
-        <span class="micro-label">A recent insight, illustrative</span>
-        <div class="stat-grid">
-          <div class="stat"><div class="num">3</div><div class="label">Day streak</div></div>
-          <div class="stat"><div class="num">2</div><div class="label">Data streams fused</div></div>
-          <div class="stat"><div class="num">6</div><div class="label">Task types covered</div></div>
-          <div class="stat"><div class="num">0</div><div class="label">Wearables required</div></div>
-        </div>
-        <div class="insight-preview-card">
-          <span class="tag">Correlation</span>
-          <p>"Reach scores are lower on days you log shoulder soreness — worth mentioning at your next check-in."</p>
-        </div>
-        <div class="insight-preview-card">
-          <span class="tag">Asymmetry</span>
-          <p>"Right-side scores are outperforming left by a wide margin across your last sessions."</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATUS -->
-  <section id="status">
-    <div class="wrap">
-      <div class="status-card reveal">
-        <div>
-          <span class="status-pill"><span class="dot"></span>Private beta &middot; iOS</span>
-          <h2>Currently a one-person build, in real testing.</h2>
-          <p>Kinetra is an independent project — no company, no funding round, just a working pipeline from a phone camera to a movement score, running on real hardware. The source is open for anyone who wants to read it, fork it, or point out what's wrong with it.</p>
-        </div>
-        <div class="status-actions">
-          <a class="btn btn-primary" href="https://github.com/wafisharif" target="_blank" rel="noopener">View the code on GitHub</a>
-          <a class="btn btn-secondary" href="mailto:wafisharif0@gmail.com">Ask about the beta</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <a href="#top" class="footer-brand">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19L11 6L13 6L20 19" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="footGrad" x1="4" y1="6" x2="20" y2="19"><stop stop-color="#bfe0ff"/><stop offset="1" stop-color="#3f90e0"/></linearGradient></defs></svg>
-          Kinetra
+      <nav class="nav-links">
+        <a href="#why">Why Kinetra</a>
+        <a href="#tasks">Task Coverage</a>
+        <a href="#product">Product</a>
+        <a href="#how">How it Works</a>
+        <a href="#insights">Daily Insights</a>
+        <a href="#status">Status</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="icon-btn" href="https://github.com/wafisharif" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+          </svg>
         </a>
-        <p class="footer-tag">Movement analysis from a phone camera. Independently built, currently in private iOS beta.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Product</h5>
-        <ul>
-          <li><a href="#why">Why Kinetra</a></li>
-          <li><a href="#tasks">Task coverage</a></li>
-          <li><a href="#how">How it works</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Resources</h5>
-        <ul>
-          <li><a href="https://github.com/wafisharif" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="#insights">Daily Insights</a></li>
-          <li><a href="#status">Beta status</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="mailto:wafisharif0@gmail.com">Contact</a></li>
-          <li><a href="#status">About the project</a></li>
-        </ul>
+        <a class="btn btn-primary" href="https://apps.apple.com" target="_blank" rel="noopener">Join iOS beta</a>
+        <button class="nav-toggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; <span id="year"></span> Kinetra. Independent project, not a medical device.</span>
-      <span>Built in Queens, NY</span>
-    </div>
-  </div>
-</footer>
+  </header>
 
-<script src="js/main.js"></script>
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1>Track movement.<br />Understand your <em class="accent" id="heroCycle">recovery</em>.</h1>
+          <p class="lede">Kinetra turns any phone camera into a pose-tracking lab — counting reps, scoring smoothness
+            and symmetry, and fusing it with how you actually feel, without a single wearable.</p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="#status">Join the iOS beta</a>
+            <a class="btn btn-secondary" href="https://github.com/wafisharif" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+              </svg>
+              View source
+            </a>
+          </div>
+          <div class="hero-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Video is analyzed and discarded — nothing is uploaded to train a model.
+          </div>
+        </div>
+
+        <div class="demo-panel reveal">
+          <div class="demo-panel-head">
+            <div class="demo-dots"><span></span><span></span><span></span></div>
+            <div class="demo-title">LIVE ANALYSIS PREVIEW</div>
+          </div>
+          <div class="demo-stage">
+            <div class="demo-task-label" id="heroTaskLabel">Gait</div>
+            <canvas id="heroCanvas" width="640" height="496" aria-label="Animated stick-figure pose demo"></canvas>
+            <div class="demo-readout">
+              <div class="metric-chip">
+                <div class="k">Reps</div>
+                <div class="v" id="mRep">0</div>
+              </div>
+              <div class="metric-chip">
+                <div class="k">Smoothness</div>
+                <div class="v good" id="mSmooth">92%</div>
+              </div>
+              <div class="metric-chip">
+                <div class="k">Symmetry</div>
+                <div class="v good" id="mSym">96%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="wrap marquee-label"><span class="micro-label">Compatibility</span></div>
+      <div class="marquee-track">
+        <span><b>iOS</b></span>
+        <span><b>Android</b></span>
+        <span>No Wearables Required</span>
+        <span>Any Smartphone Camera</span>
+        <span>No Extra Hardware</span>
+        <span>Works Indoors &amp; Outdoors</span>
+        <span><b>iOS</b></span>
+        <span><b>Android</b></span>
+        <span>No Wearables Required</span>
+        <span>Any Smartphone Camera</span>
+        <span>No Extra Hardware</span>
+        <span>Works Indoors &amp; Outdoors</span>
+      </div>
+    </div>
+
+    <!-- WHY KINETRA -->
+    <section id="why">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why Kinetra</span>
+          <h2>Where generic fitness apps stop.</h2>
+          <p>Rep-counters tell you what you did. Kinetra tells you how well you did it, and whether that's changing over
+            time.</p>
+        </div>
+        <div class="feature-list">
+          <div class="feature-item reveal">
+            <div class="num">01</div>
+            <h3>Camera-only pose tracking</h3>
+            <p>MediaPipe-based pose estimation runs on a normal video recording — no wearable sensors, no special
+              hardware, no gym equipment.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">02</div>
+            <h3>Per-limb calibration</h3>
+            <p>A one-time calibration flow learns your own observed range of motion per arm, so thresholds are relative
+              to you, not a generic default.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">03</div>
+            <h3>Honest, non-diagnostic coaching</h3>
+            <p>An optional AI coaching layer reads your scores and trends — never your video — and is explicit that it
+              isn't a medical diagnosis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TASK COVERAGE -->
+    <section id="tasks">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Task Coverage</span>
+          <h2>One camera, six movement tests.</h2>
+          <p>Every mode uses the same pose pipeline, tuned to the joints and rep pattern that matter for that task.</p>
+        </div>
+
+        <div class="task-tabs" id="taskTabs" role="tablist">
+          <button class="task-tab is-active" data-task="sit-to-stand" role="tab">Sit-to-Stand</button>
+          <button class="task-tab" data-task="reach" role="tab">Reach</button>
+          <button class="task-tab" data-task="arm-raise" role="tab">Arm Raise</button>
+          <button class="task-tab" data-task="gait" role="tab">Gait</button>
+          <button class="task-tab" data-task="balance" role="tab">Balance</button>
+          <button class="task-tab" data-task="tug" role="tab">Timed Up &amp; Go</button>
+        </div>
+
+        <div class="task-panel reveal">
+          <div class="task-panel-copy">
+            <span class="micro-label" id="taskEyebrow">SIT-TO-STAND</span>
+            <h3 id="taskTitle">Chair-rise strength &amp; control</h3>
+            <p id="taskDesc">Tracks hip and knee extension across each rise, flagging asymmetric weight-bearing and
+              rushed, uncontrolled descents.</p>
+            <ul id="taskPoints">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>Rep count &amp; tempo per rise</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>Left/right knee-extension symmetry</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>Descent-control smoothness score</li>
+            </ul>
+          </div>
+          <div class="task-panel-demo">
+            <canvas id="taskCanvas" width="640" height="520" aria-label="Animated task demo"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT -->
+    <section id="product">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Product</span>
+          <h2>From a single recording to a movement history.</h2>
+        </div>
+        <div class="product-grid">
+          <div class="product-card reveal">
+            <span class="tag">Mobile</span>
+            <h3>Kinetra App</h3>
+            <p>The Expo / React Native client: guided recording, calibration, a Daily Check-In log, Trend and Insight
+              screens, and a Team Screening mode for coaches running batches of athletes.</p>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">Backend</span>
+            <h3>Analysis Engine</h3>
+            <p>A Flask + MediaPipe service that turns a video into joint angles, rep counts, and per-task scores —
+              deployed on Render, with an optional server-side AI coaching endpoint that never sees raw video.</p>
+          </div>
+        </div>
+        <div class="badge-row reveal">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4Z" />
+            </svg>Private beta</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>Non-diagnostic by design</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 3" />
+            </svg>Video discarded post-analysis</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <path d="M4 12h16M4 6h16M4 18h16" />
+            </svg>CI on every push</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it Works</span>
+          <h2>Calibrated to your body, not a generic default.</h2>
+        </div>
+        <div class="deepdive reveal">
+          <div class="deepdive-top">
+            <div>
+              <span class="micro-label">CALIBRATION</span>
+              <h3>Kinetra Calibration</h3>
+              <p>Most rep-counters assume everyone's "full range of motion" looks the same. Kinetra records your own
+                observed angle range per arm during a short calibration pass, then derives rep-detection thresholds from
+                that — so a smaller natural range isn't scored as a failed rep.</p>
+              <a class="btn btn-secondary" href="#status">See it in the beta</a>
+            </div>
+            <ul class="step-list">
+              <li>
+                <div class="step-k">01</div>
+                <div class="step-t">Record a short baseline</div>
+                <div class="step-d">A few reps of the task at a comfortable range.</div>
+              </li>
+              <li>
+                <div class="step-k">02</div>
+                <div class="step-t">Calibrate per arm</div>
+                <div class="step-d">Left and right thresholds are stored independently.</div>
+              </li>
+              <li>
+                <div class="step-k">03</div>
+                <div class="step-t">Analyze against your baseline</div>
+                <div class="step-d">Every future session is scored relative to your own range.</div>
+              </li>
+              <li>
+                <div class="step-k">04</div>
+                <div class="step-t">Recalibrate any time</div>
+                <div class="step-d">Range of motion changes during recovery — your baseline can too.</div>
+              </li>
+            </ul>
+          </div>
+          <div class="subfeature-row">
+            <div class="subfeature">
+              <h4>Per-side persistence</h4>
+              <p>Left and right calibration values are stored and applied independently, so one side's data can never
+                silently override the other's.</p>
+            </div>
+            <div class="subfeature">
+              <h4>Six task profiles</h4>
+              <p>Sit-to-stand, reach, arm raise, gait, balance, and timed-up-and-go each get their own joint focus and
+                thresholds.</p>
+            </div>
+            <div class="subfeature">
+              <h4>Recalibrate anytime</h4>
+              <p>A visible reset in Settings, since a moving target — recovery — needs a baseline that can move too.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAILY INSIGHTS -->
+    <section id="insights">
+      <div class="wrap insights-grid">
+        <div>
+          <div class="section-head reveal" style="margin-bottom: 34px;">
+            <span class="eyebrow">Daily Insights</span>
+            <h2>Fusing how you feel with what the camera measures.</h2>
+            <p>A 30-second, no-camera check-in feeds a rule-based engine that looks for real patterns — not for reasons
+              to send a notification.</p>
+          </div>
+          <div class="insight-blocks">
+            <div class="insight-block reveal">
+              <h4>Daily Check-In</h4>
+              <p>A local, no-network log: an overall feeling rating, multi-select soreness by body region, and an
+                optional note. Takes under 30 seconds, and works even on days with no recording.</p>
+            </div>
+            <div class="insight-block reveal">
+              <h4>Insight Engine</h4>
+              <p>Cross-references check-ins against recorded scores: a streak counter, a soreness-to-score correlation
+                per task, and a left/right asymmetry detector — each gated behind a minimum sample size, so it only
+                speaks when there's evidence.</p>
+            </div>
+            <div class="insight-block reveal">
+              <h4>Evidence over engagement</h4>
+              <p>A correlation only surfaces with at least two comparable sore and clear sessions within a 36-hour
+                window, and a real gap between them. No pattern, no insight — on purpose.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card reveal">
+          <span class="micro-label">A recent insight, illustrative</span>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="num">3</div>
+              <div class="label">Day streak</div>
+            </div>
+            <div class="stat">
+              <div class="num">2</div>
+              <div class="label">Data streams fused</div>
+            </div>
+            <div class="stat">
+              <div class="num">6</div>
+              <div class="label">Task types covered</div>
+            </div>
+            <div class="stat">
+              <div class="num">0</div>
+              <div class="label">Wearables required</div>
+            </div>
+          </div>
+          <div class="insight-preview-card">
+            <span class="tag">Correlation</span>
+            <p>"Reach scores are lower on days you log shoulder soreness — worth mentioning at your next check-in."</p>
+          </div>
+          <div class="insight-preview-card">
+            <span class="tag">Asymmetry</span>
+            <p>"Right-side scores are outperforming left by a wide margin across your last sessions."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATUS -->
+    <section id="status">
+      <div class="wrap">
+        <div class="status-card reveal">
+          <div>
+            <span class="status-pill"><span class="dot"></span>Private beta &middot; iOS</span>
+            <h2>Currently a one-person build, in real testing.</h2>
+            <p>Kinetra is an independent project — no company, no funding round, just a working pipeline from a phone
+              camera to a movement score, running on real hardware. The source is open for anyone who wants to read it,
+              fork it, or point out what's wrong with it.</p>
+          </div>
+          <div class="status-actions">
+            <a class="btn btn-primary" href="https://github.com/wafisharif" target="_blank" rel="noopener">View the code
+              on GitHub</a>
+            <a class="btn btn-secondary" href="mailto:wafisharif0@gmail.com">Ask about the beta</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <a href="#top" class="footer-brand">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 19L11 6L13 6L20 19" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <defs>
+                <linearGradient id="footGrad" x1="4" y1="6" x2="20" y2="19">
+                  <stop stop-color="#bfe0ff" />
+                  <stop offset="1" stop-color="#3f90e0" />
+                </linearGradient>
+              </defs>
+            </svg>
+            Kinetra
+          </a>
+          <p class="footer-tag">Movement analysis from a phone camera. Independently built, currently in private iOS
+            beta.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="#why">Why Kinetra</a></li>
+            <li><a href="#tasks">Task coverage</a></li>
+            <li><a href="#how">How it works</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="https://github.com/wafisharif" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="#insights">Daily Insights</a></li>
+            <li><a href="#status">Beta status</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="mailto:wafisharif0@gmail.com">Contact</a></li>
+            <li><a href="#status">About the project</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year"></span> Kinetra. Independent project, not a medical device.</span>
+        <span>Built in Queens, NY</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
+
 </html>
