@@ -72,6 +72,14 @@
   }
 
   // ---------- backend calls ----------
+  // Render's free tier spins an idle backend down, so the first request
+  // after a quiet period can take 20-50s to wake it. Without a client-side
+  // cutoff, a request that never gets a response (a dropped connection
+  // during a redeploy, a stalled cold start) leaves the caller's promise
+  // pending forever -- which is exactly what made the sign-in button look
+  // frozen. REQUEST_TIMEOUT_MS bounds that wait so it always settles.
+  var REQUEST_TIMEOUT_MS = 45000;
+
   function apiRequest(path, options) {
     options = options || {};
     var headers = options.headers || {};
@@ -79,10 +87,18 @@
     var token = getToken();
     if (token) headers["Authorization"] = "Bearer " + token;
 
+    var controller = (typeof AbortController !== "undefined") ? new AbortController() : null;
+    var timedOut = false;
+    var timeoutId = controller ? setTimeout(function () {
+      timedOut = true;
+      controller.abort();
+    }, REQUEST_TIMEOUT_MS) : null;
+
     return fetch(API_BASE + path, {
       method: options.method || "GET",
       headers: headers,
-      body: options.body ? JSON.stringify(options.body) : undefined
+      body: options.body ? JSON.stringify(options.body) : undefined,
+      signal: controller ? controller.signal : undefined
     }).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (data) {
         if (!res.ok) {
@@ -93,6 +109,11 @@
         return data;
       });
     }).catch(function (err) {
+      if (timedOut) {
+        throw new Error(
+          "The Kinetra server is taking too long to respond. It's probably waking up from being idle -- wait a bit and try again."
+        );
+      }
       if (err instanceof TypeError) {
         // fetch() itself rejects (offline, CORS, or the backend is asleep
         // and slow to wake -- Render's free tier spins down an idle
@@ -103,6 +124,8 @@
         throw wrapped;
       }
       throw err;
+    }).finally(function () {
+      if (timeoutId) clearTimeout(timeoutId);
     });
   }
 
@@ -466,12 +489,16 @@
         var password = document.getElementById("kd-signin-password").value || "";
         var btn = document.getElementById("kd-signin-submit");
         setSubmitLoading(btn, true, "Signing in…", "Sign in");
+        var slowNotice = setTimeout(function () {
+          btn.textContent = "Still working, waking up the server…";
+        }, 6000);
         signIn(email, password).then(function (data) {
           setSession(data.token, data.user);
           paint(data.user);
         }).catch(function (err) {
           showError(err.message);
         }).finally(function () {
+          clearTimeout(slowNotice);
           setSubmitLoading(btn, false, "Signing in…", "Sign in");
         });
       });
@@ -490,12 +517,16 @@
         }
         var btn = document.getElementById("kd-signup-submit");
         setSubmitLoading(btn, true, "Creating account…", "Create account");
+        var slowNotice = setTimeout(function () {
+          btn.textContent = "Still working, waking up the server…";
+        }, 6000);
         signUp(name, email, password).then(function (data) {
           setSession(data.token, data.user);
           paint(data.user);
         }).catch(function (err) {
           showError(err.message);
         }).finally(function () {
+          clearTimeout(slowNotice);
           setSubmitLoading(btn, false, "Creating account…", "Create account");
         });
       });

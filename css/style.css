@@ -328,6 +328,15 @@ html.js-reveal .reveal.is-visible {
   color: var(--ink-strong);
 }
 
+/* Extra Sign in / GitHub entries shown only inside the mobile hamburger
+   menu (see the @media (max-width: 720px) block below). On desktop these
+   already have their own place in .nav-actions, so this stays hidden
+   there -- it only exists to keep both reachable on narrow screens, where
+   .nav-actions does not have room for every button at once. */
+.nav-mobile-extra {
+  display: none;
+}
+
 .nav-toggle {
   display: none;
 }
@@ -1418,6 +1427,44 @@ html.js-reveal .reveal.is-visible {
     place-items: center;
     width: 34px;
     height: 34px;
+    color: var(--ink-strong);
+  }
+
+  /* Room is tight on a phone-width bar, so the persistent .nav-actions
+     strip keeps only the primary CTA and the hamburger; Sign in and
+     GitHub move into the opened mobile menu instead of disappearing. */
+  .nav-actions .icon-btn,
+  .nav-actions .nav-signin {
+    display: none;
+  }
+
+  .nav-links.is-open .nav-mobile-extra {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .nav-mobile-extra .nav-signin {
+    width: 100%;
+  }
+
+  .nav-mobile-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 4px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+  }
+
+  .nav-mobile-github:hover {
     color: var(--ink-strong);
   }
 
