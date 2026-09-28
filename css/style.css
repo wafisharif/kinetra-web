@@ -1052,6 +1052,103 @@ html.js-reveal .reveal.is-visible {
 }
 
 /* ==========================================================================
+   Capabilities grid (reuses .product-card)
+   ========================================================================== */
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.inline-link {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ==========================================================================
+   Personas (4-up variant of .feature-list)
+   ========================================================================== */
+.feature-list.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ==========================================================================
+   Roadmap
+   ========================================================================== */
+.roadmap-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.roadmap-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.roadmap-row:first-child {
+  padding-top: 0;
+}
+
+.roadmap-row:last-child {
+  border-bottom: none;
+}
+
+.roadmap-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-strong);
+  margin-bottom: 6px;
+}
+
+.roadmap-desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  max-width: 560px;
+}
+
+.roadmap-tag {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-soft);
+  height: fit-content;
+  margin-top: 2px;
+}
+
+.tag-development {
+  color: var(--accent-teal);
+  border-color: rgba(127, 224, 200, 0.35);
+  background: rgba(127, 224, 200, 0.08);
+}
+
+.tag-planned {
+  color: var(--brand);
+  border-color: rgba(142, 198, 247, 0.35);
+  background: rgba(142, 198, 247, 0.08);
+}
+
+.tag-exploring {
+  color: var(--ink-muted);
+  background: var(--surface-2);
+}
+
+.roadmap-note {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .site-footer {
@@ -1181,6 +1278,18 @@ html.js-reveal .reveal.is-visible {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
   }
+
+  .feature-list.cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .roadmap-row {
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap-tag {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1206,5 +1315,9 @@ html.js-reveal .reveal.is-visible {
 
   .stat-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .feature-list.cols-4 {
+    grid-template-columns: 1fr;
   }
 }

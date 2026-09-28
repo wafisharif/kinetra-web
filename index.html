@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinetra — Movement analysis, from any phone camera</title>
+  <title>Kinetra: Movement Tracker</title>
   <meta name="description"
     content="Kinetra turns a phone camera into a movement-analysis lab: pose-tracking, rep counting, and rehab-style scoring for six clinical task types, no wearables required. Currently in private iOS beta." />
 
@@ -48,6 +48,8 @@
         <a href="#product">Product</a>
         <a href="#how">How it Works</a>
         <a href="#insights">Daily Insights</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="/dashboard/">Dashboard</a>
         <a href="#status">Status</a>
       </nav>
       <div class="nav-actions">
@@ -97,11 +99,11 @@
         <div class="demo-panel reveal">
           <div class="demo-panel-head">
             <div class="demo-dots"><span></span><span></span><span></span></div>
-            <div class="demo-title">LIVE ANALYSIS PREVIEW</div>
+            <div class="demo-title">LIVE ANALYSIS PREVIEW &middot; <span style="color:var(--ink-faint);text-transform:none;letter-spacing:0;">move your cursor over it</span></div>
           </div>
           <div class="demo-stage">
             <div class="demo-task-label" id="heroTaskLabel">Gait</div>
-            <canvas id="heroCanvas" width="640" height="496" aria-label="Animated stick-figure pose demo"></canvas>
+            <canvas id="heroCanvas" width="640" height="496" aria-label="Animated stick-figure pose demo, reacts to your cursor" style="cursor:crosshair;"></canvas>
             <div class="demo-readout">
               <div class="metric-chip">
                 <div class="k">Reps</div>
@@ -209,7 +211,7 @@
             </ul>
           </div>
           <div class="task-panel-demo">
-            <canvas id="taskCanvas" width="640" height="520" aria-label="Animated task demo"></canvas>
+            <canvas id="taskCanvas" width="640" height="520" aria-label="Animated task demo, reacts to your cursor" style="cursor:crosshair;"></canvas>
           </div>
         </div>
       </div>
@@ -250,6 +252,45 @@
           <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
               <path d="M4 12h16M4 6h16M4 18h16" />
             </svg>CI on every push</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section id="capabilities">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Capabilities</span>
+          <h2>The parts that don't fit in a screenshot.</h2>
+          <p>Everything below exists because a single score wasn't the whole story.</p>
+        </div>
+        <div class="capability-grid">
+          <div class="product-card reveal">
+            <span class="tag">Coaching</span>
+            <h3>Team Screening</h3>
+            <p>A coach or trainer attaches a name to a check and sees a whole roster at a glance, with anyone whose latest result needs a second look flagged automatically.</p>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">Accuracy</span>
+            <h3>Frame-Rate Normalization</h3>
+            <p>Velocity is computed against a fixed reference rate, so a 24fps phone and a 60fps phone score the same movement the same way.</p>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">Trust</span>
+            <h3>Transparency Page</h3>
+            <p>Plain language, in the app, on exactly what's measured, where a single 2D camera falls short, and what happens to your video after analysis.</p>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">Motivation</span>
+            <h3>Streaks &amp; Badges</h3>
+            <p>Earned by showing up and testing fully — never by posting a high score. A three-day streak counts the same whether the score was a 62 or a 96.</p>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">New</span>
+            <h3>Web Dashboard</h3>
+            <p>Preview the browser dashboard we're building — score trends, streaks, and a coach roster view — ahead of full account sync.</p>
+            <a class="btn btn-secondary" href="/dashboard/" style="margin-top:16px;">Try the preview</a>
+          </div>
         </div>
       </div>
     </section>
@@ -376,6 +417,109 @@
       </div>
     </section>
 
+    <!-- WHO IT'S FOR -->
+    <section id="personas">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Who it's for</span>
+          <h2>Built for anyone who wants a number instead of a guess.</h2>
+        </div>
+        <div class="feature-list cols-4">
+          <div class="feature-item reveal">
+            <div class="num">01</div>
+            <h3>Coaches &amp; trainers</h3>
+            <p>Screen a whole roster for movement quality with Team Screening, and see who needs a second look without chasing everyone down individually.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">02</div>
+            <h3>Home rehab</h3>
+            <p>Doing guided exercises at home and want an objective number instead of guessing whether today was actually better than last week.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">03</div>
+            <h3>Curious self-trackers</h3>
+            <p>Wondering whether your range of motion, balance, or day-to-day feeling is really changing over weeks, not just how it feels today.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">04</div>
+            <h3>Student-athletes &amp; teams</h3>
+            <p>Track consistency across a season, build a check-in streak, and give a coach a shared view without a spreadsheet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">What's next</span>
+          <h2>The honest roadmap.</h2>
+          <p>Kinetra is in active development. Here's what's actually being worked on — not a promise of dates, just where the attention is going.</p>
+        </div>
+
+        <div class="roadmap-list reveal">
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Web Dashboard &amp; Account Sync</div>
+              <p class="roadmap-desc">An optional account that syncs real scores, streaks, and Insights to the browser dashboard you can <a href="/dashboard/" class="inline-link">preview today</a>. The app stays fully usable with zero account, same as now.</p>
+            </div>
+            <div class="roadmap-tag tag-development">In development</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Skeleton Overlay Export</div>
+              <p class="roadmap-desc">See your tracked pose drawn directly over your own recording, so you can watch exactly what Kinetra saw.</p>
+            </div>
+            <div class="roadmap-tag tag-planned">Planned</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Team Leaderboards &amp; Shared Roster</div>
+              <p class="roadmap-desc">An extension of Team Screening: a shared roster view a whole coaching staff can check, not just the person who ran the screen.</p>
+            </div>
+            <div class="roadmap-tag tag-planned">Planned</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">PDF Session Reports</div>
+              <p class="roadmap-desc">A clean, printable summary of a session or a date range — built for handing to a coach or physical therapist.</p>
+            </div>
+            <div class="roadmap-tag tag-planned">Planned</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Apple Health Export</div>
+              <p class="roadmap-desc">Send movement scores into Apple Health so they sit alongside the rest of your fitness data.</p>
+            </div>
+            <div class="roadmap-tag tag-exploring">Exploring</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Android Release</div>
+              <p class="roadmap-desc">Kinetra is iOS-first today. An Android build is on the radar.</p>
+            </div>
+            <div class="roadmap-tag tag-exploring">Exploring</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Voice-Guided Rep Counting</div>
+              <p class="roadmap-desc">Spoken cues during a recording, so you don't need to look at the screen mid-movement.</p>
+            </div>
+            <div class="roadmap-tag tag-exploring">Exploring</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Multi-Language Support</div>
+              <p class="roadmap-desc">Kinetra is English-only today. Broader language support is something worth getting right, not rushing.</p>
+            </div>
+            <div class="roadmap-tag tag-exploring">Exploring</div>
+          </div>
+        </div>
+        <p class="roadmap-note">Have a feature you actually want? Say so at <a href="/support" class="inline-link">kinetraapp.com/support</a> — this list changes based on real feedback, not the other way around.</p>
+      </div>
+    </section>
+
     <!-- STATUS -->
     <section id="status">
       <div class="wrap">
@@ -422,8 +566,9 @@
           <h5>Product</h5>
           <ul>
             <li><a href="#why">Why Kinetra</a></li>
-            <li><a href="#tasks">Task coverage</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
             <li><a href="#how">How it works</a></li>
+            <li><a href="/dashboard/">Dashboard preview</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -431,6 +576,7 @@
           <ul>
             <li><a href="https://github.com/wafisharif" target="_blank" rel="noopener">GitHub</a></li>
             <li><a href="#insights">Daily Insights</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
             <li><a href="#status">Beta status</a></li>
           </ul>
         </div>
@@ -438,7 +584,9 @@
           <h5>Company</h5>
           <ul>
             <li><a href="mailto:wafisharif0@gmail.com">Contact</a></li>
-            <li><a href="#status">About the project</a></li>
+            <li><a href="/support">Support</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Use</a></li>
           </ul>
         </div>
       </div>

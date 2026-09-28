@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard Preview — Kinetra</title>
+<meta name="description" content="Preview the Kinetra web dashboard -- score trends, streaks, and a coach roster view -- ahead of full account sync." />
+<link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Urbanist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/legal.css" />
+<link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="../" class="nav-brand">
+      <img src="../assets/images/favicon.png" alt="" width="28" height="28" class="nav-logo-mark" />
+      Kinetra
+    </a>
+    <nav class="nav-links">
+      <a href="../#why">Why Kinetra</a>
+      <a href="../#tasks">Task Coverage</a>
+      <a href="../#product">Product</a>
+      <a href="../#capabilities">Capabilities</a>
+      <a href="../#how">How it Works</a>
+      <a href="../#insights">Daily Insights</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="./" class="is-active-page">Dashboard</a>
+      <a href="../#status">Status</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-primary" href="https://apps.apple.com" target="_blank" rel="noopener">Join iOS beta</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="legal-main kd-main">
+  <a href="../" class="legal-back">&larr; Back to Kinetra</a>
+
+  <div class="kd-banner">
+    <span>&#9888;</span>
+    <span><strong>Dashboard preview.</strong> This runs entirely in your browser with sample data — nothing here is sent anywhere, and it isn't yet connected to the Kinetra app. Real account sync is in development; see the <a href="../#roadmap" class="inline-link">Roadmap</a>.</span>
+  </div>
+
+  <section id="kd-auth">
+    <div class="kd-auth-wrap">
+      <h1>Preview your dashboard</h1>
+      <p class="kd-auth-sub">Create a local preview account to see what the Kinetra dashboard will look like once account sync ships. No real data, no server — just this browser.</p>
+      <div class="kd-auth-error" id="kd-auth-error"></div>
+      <form id="kd-auth-form">
+        <div class="kd-field">
+          <label for="kd-name">Name</label>
+          <input id="kd-name" type="text" autocomplete="name" placeholder="Alex Rivera" required>
+        </div>
+        <div class="kd-field">
+          <label for="kd-email">Email</label>
+          <input id="kd-email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="kd-field">
+          <label for="kd-password">Password</label>
+          <input id="kd-password" type="password" autocomplete="new-password" placeholder="At least 4 characters" required>
+        </div>
+        <button type="submit" class="kd-submit">Create preview account</button>
+      </form>
+      <p class="kd-auth-note">This preview stores your info only in this browser's local storage — please don't reuse a password you use anywhere else.</p>
+    </div>
+  </section>
+
+  <section id="kd-dash" style="display:none;">
+    <div class="kd-dash-head">
+      <h1 id="kd-greeting">Welcome back</h1>
+      <button class="kd-signout" id="kd-signout">Sign out</button>
+    </div>
+
+    <div class="kd-grid">
+      <div>
+        <div class="kd-card">
+          <h2>Movement score trend</h2>
+          <p class="kd-card-sub">Last 28 days &middot; sample data</p>
+          <div class="kd-stat-row">
+            <div class="kd-stat">
+              <div class="kd-stat-value" id="kd-latest-score">--</div>
+              <div class="kd-stat-label">Latest score</div>
+            </div>
+            <div class="kd-stat">
+              <div class="kd-stat-value" id="kd-streak-count">--</div>
+              <div class="kd-stat-label">Day streak</div>
+            </div>
+          </div>
+          <div class="kd-chart-wrap" id="kd-chart"></div>
+        </div>
+
+        <div class="kd-card">
+          <h2>Check-in streak</h2>
+          <p class="kd-card-sub">Each square is a day &mdash; filled means you checked in</p>
+          <div class="kd-streak-grid" id="kd-streak-grid"></div>
+        </div>
+
+        <div class="kd-card">
+          <h2>Recent sessions</h2>
+          <p class="kd-card-sub">Sample sessions</p>
+          <div id="kd-sessions"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="kd-card">
+          <h2>Calibration status</h2>
+          <p class="kd-card-sub">Per-arm, from your last calibration recording</p>
+          <div class="kd-cal-row">
+            <span class="kd-cal-label">Left side</span>
+            <span class="kd-cal-value" id="kd-cal-left">--</span>
+          </div>
+          <div class="kd-cal-row">
+            <span class="kd-cal-label">Right side</span>
+            <span class="kd-cal-value" id="kd-cal-right">--</span>
+          </div>
+        </div>
+
+        <div class="kd-card">
+          <h2>Badges</h2>
+          <p class="kd-card-sub">Earned by showing up and testing fully</p>
+          <div class="kd-badge-row" id="kd-badges"></div>
+        </div>
+
+        <div class="kd-card">
+          <h2>Coach view</h2>
+          <p class="kd-card-sub">A preview of Team Screening's roster view</p>
+          <button class="kd-coach-toggle" id="kd-coach-toggle" aria-expanded="false">Preview coach roster view</button>
+          <div class="kd-coach-panel" id="kd-coach-panel">
+            <div id="kd-roster"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Kinetra. Independent project, not a medical device.</span>
+      <span><a class="inline-link" href="../terms/">Terms</a> &middot; <a class="inline-link" href="../privacy/">Privacy</a> &middot; <a class="inline-link" href="../support/">Support</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/nav.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

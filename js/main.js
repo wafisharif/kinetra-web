@@ -202,7 +202,135 @@ function computePose(task, p) {
   const knee = extendAngle(hip, SEG.thigh, hipFlex);
   const ankle = extendAngle(knee, SEG.shank, hipFlex - kneeFlex);
 
-  return { hip, shoulder, neckTop, head, elbow, wrist, knee, ankle, headR: SEG.headR };
+  return {
+    hip, shoulder, neckTop, head, elbow, wrist, knee, ankle, headR: SEG.headR,
+    // raw joint-angle inputs, in radians -- surfaced so the interactive
+    // layer below can show a real reading (e.g. "Knee flexion: 92°")
+    // instead of a made-up number.
+    angles: { torsoLean, hipFlex, kneeFlex, shoulderAngle, elbowBend },
+  };
+}
+
+/* ---------------------------------------------------------------------- */
+/* Interactive layer — cursor-reactive joints, ripples, live angle readout */
+/* Shared by the hero demo and the task-coverage demo: move your cursor    */
+/* near a joint and it lights up; click one to read its tracked angle,     */
+/* the same way the real app reports a joint-angle score.                 */
+/* ---------------------------------------------------------------------- */
+const REDUCE_MOTION = typeof window !== 'undefined' && window.matchMedia &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const JOINT_READOUT_NAMES = {
+  shoulder: 'Shoulder angle',
+  elbow: 'Elbow bend',
+  wrist: 'Wrist tracked',
+  hip: 'Hip flexion',
+  knee: 'Knee flexion',
+  ankle: 'Ankle tracked',
+  head: 'Head tracked',
+};
+
+function angleForJoint(name, angles) {
+  const toDeg = (r) => Math.round((r * 180) / Math.PI);
+  switch (name) {
+    case 'hip': return toDeg(angles.hipFlex) + '°';
+    case 'knee': return toDeg(angles.kneeFlex) + '°';
+    case 'shoulder': return toDeg(angles.shoulderAngle) + '°';
+    case 'elbow': return toDeg(angles.elbowBend) + '°';
+    default: return '✓';
+  }
+}
+
+function createPoseInteraction(canvas) {
+  const state = {
+    pointer: { x: 0, y: 0, active: false },
+    ripples: [],
+    readout: null, // { x, y, text, life }
+    joints: {}, // last frame's screen-space joint positions, by name
+  };
+
+  function toLocal(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+  }
+
+  canvas.addEventListener('mousemove', (e) => {
+    const p = toLocal(e.clientX, e.clientY);
+    state.pointer.x = p.x; state.pointer.y = p.y; state.pointer.active = true;
+  });
+  canvas.addEventListener('mouseleave', () => { state.pointer.active = false; });
+  canvas.addEventListener('touchmove', (e) => {
+    if (!e.touches || !e.touches[0]) return;
+    const p = toLocal(e.touches[0].clientX, e.touches[0].clientY);
+    state.pointer.x = p.x; state.pointer.y = p.y; state.pointer.active = true;
+  }, { passive: true });
+  canvas.addEventListener('touchend', () => { state.pointer.active = false; });
+
+  canvas.addEventListener('click', (e) => {
+    const p = toLocal(e.clientX, e.clientY);
+    state.ripples.push({ x: p.x, y: p.y, r: 4, maxR: 140, life: 1 });
+
+    let nearestName = null;
+    let nearestD = Infinity;
+    for (const name in state.joints) {
+      const j = state.joints[name];
+      const d = Math.hypot(j.x - p.x, j.y - p.y);
+      if (d < nearestD) { nearestD = d; nearestName = name; }
+    }
+    if (nearestName && nearestD < 70 && state.joints[nearestName].angles) {
+      const label = JOINT_READOUT_NAMES[nearestName] || 'Tracked';
+      const val = angleForJoint(nearestName, state.joints[nearestName].angles);
+      state.readout = { x: p.x, y: p.y, text: label + ': ' + val, life: 1 };
+    }
+  });
+
+  return state;
+}
+
+function updateInteraction(state, dt) {
+  state.ripples = state.ripples.filter((r) => r.life > 0);
+  state.ripples.forEach((r) => {
+    r.r += (r.maxR - r.r) * 0.09 + 26 * dt;
+    r.life -= dt * 1.1;
+  });
+  if (state.readout) {
+    state.readout.life -= dt * 0.6;
+    if (state.readout.life <= 0) state.readout = null;
+  }
+}
+
+function drawInteractionOverlay(ctx, state) {
+  state.ripples.forEach((r) => {
+    ctx.strokeStyle = 'rgba(142,198,247,' + Math.max(r.life, 0) * 0.6 + ')';
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+
+  if (state.readout) {
+    const ro = state.readout;
+    ctx.globalAlpha = Math.min(ro.life, 1);
+    ctx.font = "600 13px 'JetBrains Mono', monospace";
+    const padX = 10, padY = 7;
+    const tw = ctx.measureText(ro.text).width;
+    const bx = ro.x + 14, by = ro.y - 14 - 26;
+    ctx.fillStyle = 'rgba(10,12,16,0.88)';
+    const r = 8;
+    ctx.beginPath();
+    ctx.moveTo(bx + r, by);
+    ctx.arcTo(bx + tw + padX * 2, by, bx + tw + padX * 2, by + 28, r);
+    ctx.arcTo(bx + tw + padX * 2, by + 28, bx, by + 28, r);
+    ctx.arcTo(bx, by + 28, bx, by, r);
+    ctx.arcTo(bx, by, bx + tw + padX * 2, by, r);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#8ec6f7';
+    ctx.fillText(ro.text, bx + padX, by + 18);
+    ctx.globalAlpha = 1;
+  }
 }
 
 /**
@@ -212,17 +340,40 @@ function computePose(task, p) {
 function drawPose(ctx, pose, origin, unit, opts) {
   const brand = (opts && opts.brand) || '#8ec6f7';
   const brandDeep = (opts && opts.brandDeep) || '#3f90e0';
+  const interaction = opts && opts.interaction;
   const toPx = (pt) => ({ x: origin.x + pt.x * unit, y: origin.y + pt.y * unit });
 
-  const hip = toPx(pose.hip);
-  const shoulder = toPx(pose.shoulder);
-  const neckTop = toPx(pose.neckTop);
-  const head = toPx(pose.head);
-  const elbow = toPx(pose.elbow);
-  const wrist = toPx(pose.wrist);
-  const knee = toPx(pose.knee);
-  const ankle = toPx(pose.ankle);
+  let hip = toPx(pose.hip);
+  let shoulder = toPx(pose.shoulder);
+  let neckTop = toPx(pose.neckTop);
+  let head = toPx(pose.head);
+  let elbow = toPx(pose.elbow);
+  let wrist = toPx(pose.wrist);
+  let knee = toPx(pose.knee);
+  let ankle = toPx(pose.ankle);
   const headR = pose.headR * unit;
+
+  // Cursor-reactive spring displacement: a joint near the pointer nudges
+  // away from it and glows brighter, then the base render below still
+  // draws it in its nudged spot. Purely visual -- it never feeds back
+  // into the walk-cycle math above.
+  const near = {};
+  if (interaction && interaction.pointer.active && !REDUCE_MOTION) {
+    const radius = unit * 0.5;
+    const pointer = interaction.pointer;
+    const named = { hip, shoulder, neckTop, head, elbow, wrist, knee, ankle };
+    for (const name in named) {
+      const j = named[name];
+      const d = Math.hypot(j.x - pointer.x, j.y - pointer.y);
+      if (d < radius && d > 0.001) {
+        const f = 1 - d / radius;
+        const ang = Math.atan2(j.y - pointer.y, j.x - pointer.x);
+        j.x += Math.cos(ang) * f * unit * 0.09;
+        j.y += Math.sin(ang) * f * unit * 0.09;
+        near[name] = f;
+      }
+    }
+  }
 
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
@@ -257,12 +408,38 @@ function drawPose(ctx, pose, origin, unit, opts) {
   ctx.restore();
 
   // joints
-  ctx.fillStyle = '#f6f8fb';
-  [shoulder, elbow, wrist, hip, knee, ankle].forEach((j) => {
+  const jointList = { shoulder, elbow, wrist, hip, knee, ankle };
+  for (const name in jointList) {
+    const j = jointList[name];
+    const f = near[name] || 0;
+    if (f > 0) {
+      const glowR = Math.max(6, unit * 0.09) * (1 + f * 2.2);
+      const rg = ctx.createRadialGradient(j.x, j.y, 0, j.x, j.y, glowR);
+      rg.addColorStop(0, 'rgba(191,219,254,' + (0.55 * f) + ')');
+      rg.addColorStop(1, 'rgba(142,198,247,0)');
+      ctx.fillStyle = rg;
+      ctx.beginPath();
+      ctx.arc(j.x, j.y, glowR, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.fillStyle = f > 0 ? '#ffffff' : '#f6f8fb';
     ctx.beginPath();
-    ctx.arc(j.x, j.y, Math.max(2.4, unit * 0.045), 0, Math.PI * 2);
+    ctx.arc(j.x, j.y, Math.max(2.4, unit * 0.045) * (1 + f * 0.5), 0, Math.PI * 2);
     ctx.fill();
-  });
+  }
+
+  // record screen-space positions (+ the frame's raw angles) so the
+  // interaction layer's click handler can hit-test against real joints.
+  if (interaction) {
+    interaction.joints = {
+      shoulder: { x: shoulder.x, y: shoulder.y, angles: pose.angles },
+      elbow: { x: elbow.x, y: elbow.y, angles: pose.angles },
+      wrist: { x: wrist.x, y: wrist.y, angles: pose.angles },
+      hip: { x: hip.x, y: hip.y, angles: pose.angles },
+      knee: { x: knee.x, y: knee.y, angles: pose.angles },
+      ankle: { x: ankle.x, y: ankle.y, angles: pose.angles },
+    };
+  }
 }
 
 function drawBackdrop(ctx, w, h, t) {
@@ -303,8 +480,12 @@ function startPoseLoop(canvas, getTask, period) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;
   const h = canvas.height;
+  const interaction = createPoseInteraction(canvas);
+  let lastTs = null;
 
   function frame(ts) {
+    const dt = lastTs == null ? 0 : Math.min((ts - lastTs) / 1000, 0.05);
+    lastTs = ts;
     const task = getTask();
     const t = (ts / 1000) % period;
     const p = t / period;
@@ -312,7 +493,9 @@ function startPoseLoop(canvas, getTask, period) {
     const unit = h * 0.34;
     const pose = computePose(task, p);
     const origin = { x: cx, y: groundY - (SEG.thigh + SEG.shank) * unit };
-    drawPose(ctx, pose, origin, unit, {});
+    drawPose(ctx, pose, origin, unit, { interaction });
+    updateInteraction(interaction, dt);
+    drawInteractionOverlay(ctx, interaction);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
@@ -429,7 +612,11 @@ function startPoseLoop(canvas, getTask, period) {
     const ctx = canvas.getContext('2d');
     const w = canvas.width;
     const h = canvas.height;
+    const interaction = createPoseInteraction(canvas);
+    let lastTs = null;
     function frame(ts) {
+      const dt = lastTs == null ? 0 : Math.min((ts - lastTs) / 1000, 0.05);
+      lastTs = ts;
       const period = currentPeriod;
       const t = (ts / 1000) % period;
       const p = t / period;
@@ -437,7 +624,9 @@ function startPoseLoop(canvas, getTask, period) {
       const unit = h * 0.32;
       const pose = computePose(currentTask, p);
       const origin = { x: cx, y: groundY - (SEG.thigh + SEG.shank) * unit };
-      drawPose(ctx, pose, origin, unit, {});
+      drawPose(ctx, pose, origin, unit, { interaction });
+      updateInteraction(interaction, dt);
+      drawInteractionOverlay(ctx, interaction);
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);

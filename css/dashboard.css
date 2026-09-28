@@ -1,0 +1,214 @@
+/* Kinetra Dashboard preview -- built entirely from the site's existing
+   design tokens (see css/legal.css / style.css) so it matches the rest of
+   kinetraapp.com without introducing a second visual language. */
+
+.kd-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 168px var(--section-inline) var(--section-block);
+}
+
+.kd-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.16), rgba(124,58,237,0.12));
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card);
+  padding: 14px 18px;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+.kd-banner strong { color: var(--ink-strong); }
+.kd-banner a.inline-link { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- auth ---------- */
+.kd-auth-wrap {
+  max-width: 420px;
+  margin: 40px auto 0;
+  background: var(--surface-1);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card-lg);
+  padding: 36px 32px;
+}
+.kd-auth-wrap h1 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  color: var(--ink-strong);
+  margin: 0 0 8px;
+}
+.kd-auth-sub { color: var(--ink-muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 26px; }
+
+.kd-field { margin-bottom: 16px; }
+.kd-field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-body); margin-bottom: 6px; }
+.kd-field input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: 11px 13px;
+  color: var(--ink-strong);
+  font-size: 14.5px;
+}
+.kd-field input:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+
+.kd-submit {
+  width: 100%;
+  background: var(--brand-strong);
+  color: #051324;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 13px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.kd-submit:hover { filter: brightness(1.05); }
+
+.kd-auth-error {
+  display: none;
+  color: #fca5a5;
+  background: rgba(220,38,38,0.1);
+  border: 1px solid rgba(220,38,38,0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.kd-auth-note { margin-top: 18px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.6; }
+
+/* ---------- dashboard shell ---------- */
+.kd-dash-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.kd-dash-head h1 { font-family: var(--font-display); font-size: 30px; color: var(--ink-strong); margin: 0; }
+.kd-signout {
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  color: var(--ink-muted);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.kd-signout:hover { color: var(--ink-strong); border-color: var(--brand); }
+
+.kd-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 760px) { .kd-grid { grid-template-columns: 1fr; } }
+
+.kd-card {
+  background: var(--surface-1);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card-lg);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+.kd-card h2 { font-size: 15px; color: var(--ink-strong); margin: 0 0 4px; }
+.kd-card .kd-card-sub { font-size: 12.5px; color: var(--ink-faint); margin-bottom: 16px; }
+
+.kd-stat-row { display: flex; gap: 24px; margin-bottom: 6px; }
+.kd-stat { }
+.kd-stat .kd-stat-value { font-family: var(--font-display); font-size: 34px; color: var(--ink-strong); line-height: 1; }
+.kd-stat .kd-stat-label { font-size: 12px; color: var(--ink-faint); margin-top: 4px; }
+
+/* chart */
+.kd-chart-wrap { width: 100%; }
+.kd-chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.kd-grid-line, line.kd-grid { stroke: var(--line-soft); stroke-width: 1; }
+.kd-axis-label { font-size: 9px; fill: var(--ink-faint); }
+.kd-line { fill: none; stroke: #60a5fa; stroke-width: 2.5; }
+.kd-area { fill: rgba(96,165,250,0.12); }
+.kd-crosshair { stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 3 3; }
+.kd-dot { fill: #eff6ff; stroke: #60a5fa; stroke-width: 2; }
+.kd-tooltip {
+  position: absolute;
+  transform: translate(-50%, -110%);
+  background: rgba(8,12,24,0.92);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.1s ease;
+}
+.kd-tooltip strong { color: var(--ink-strong); margin-right: 2px; }
+
+/* streak grid */
+.kd-streak-grid { display: grid; grid-template-columns: repeat(14, 1fr); gap: 5px; }
+.kd-streak-cell { aspect-ratio: 1; border-radius: 4px; background: rgba(255,255,255,0.05); }
+.kd-streak-cell.is-on { background: #3b82f6; }
+
+/* sessions */
+.kd-session-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line-soft); }
+.kd-session-row:last-child { border-bottom: none; }
+.kd-session-title { font-size: 14px; color: var(--ink-strong); font-weight: 600; }
+.kd-session-date { font-size: 12px; color: var(--ink-faint); }
+.kd-session-score { font-size: 14px; color: var(--ink-body); font-variant-numeric: tabular-nums; }
+
+/* badges */
+.kd-badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.kd-badge {
+  background: rgba(124,58,237,0.14);
+  border: 1px solid rgba(124,58,237,0.35);
+  color: #c4b5fd;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+/* calibration */
+.kd-cal-row { display: flex; justify-content: space-between; padding: 8px 0; }
+.kd-cal-label { color: var(--ink-muted); font-size: 13.5px; }
+.kd-cal-value { font-size: 13.5px; font-weight: 700; }
+.kd-cal-ok { color: #4ade80; }
+.kd-cal-warn { color: #fbbf24; }
+
+/* coach roster */
+.kd-coach-toggle {
+  background: transparent;
+  border: 1px dashed var(--line-soft);
+  color: var(--ink-muted);
+  border-radius: var(--radius-pill);
+  padding: 9px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.kd-coach-toggle:hover { color: var(--brand); border-color: var(--brand); }
+.kd-coach-panel { display: none; }
+.kd-coach-panel.is-open { display: block; }
+.kd-roster-row {
+  display: grid;
+  grid-template-columns: 16px 1fr 44px 90px;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.kd-roster-row:last-child { border-bottom: none; }
+.kd-status-dot { width: 10px; height: 10px; border-radius: 50%; }
+.kd-status-good { background: #22c55e; }
+.kd-status-warning { background: #f59e0b; }
+.kd-status-critical { background: #ef4444; }
+.kd-roster-label { color: var(--ink-body); font-size: 13.5px; }
+.kd-roster-score { color: var(--ink-strong); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.kd-status-text-good { color: #4ade80; font-size: 12px; font-weight: 600; }
+.kd-status-text-warning { color: #fbbf24; font-size: 12px; font-weight: 600; }
+.kd-status-text-critical { color: #f87171; font-size: 12px; font-weight: 600; }
