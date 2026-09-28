@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dashboard Preview — Kinetra</title>
-<meta name="description" content="Preview the Kinetra web dashboard -- score trends, streaks, and a coach roster view -- ahead of full account sync." />
+<title>Kinetra Dashboard</title>
+<meta name="description" content="Sign in to your Kinetra account and check your movement score trend, streaks, and a coach roster view." />
 <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,15 +22,40 @@
       Kinetra
     </a>
     <nav class="nav-links">
-      <a href="../#why">Why Kinetra</a>
-      <a href="../#tasks">Task Coverage</a>
-      <a href="../#product">Product</a>
-      <a href="../#capabilities">Capabilities</a>
-      <a href="../#how">How it Works</a>
-      <a href="../#insights">Daily Insights</a>
-      <a href="../#roadmap">Roadmap</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Product
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#why">Why Kinetra</a>
+          <a href="../#tasks">Task Coverage</a>
+          <a href="../#product">Product</a>
+          <a href="../#capabilities">Capabilities</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          How it Works
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#how">How it Works</a>
+          <a href="../#insights">Daily Insights</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Project
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#roadmap">Roadmap</a>
+          <a href="../#status">Status</a>
+          <a href="../support/">Support</a>
+        </div>
+      </div>
       <a href="./" class="is-active-page">Dashboard</a>
-      <a href="../#status">Status</a>
     </nav>
     <div class="nav-actions">
       <a class="btn btn-primary" href="https://apps.apple.com" target="_blank" rel="noopener">Join iOS beta</a>
@@ -48,30 +73,50 @@
 
   <div class="kd-banner">
     <span>&#9888;</span>
-    <span><strong>Dashboard preview.</strong> This runs entirely in your browser with sample data — nothing here is sent anywhere, and it isn't yet connected to the Kinetra app. Real account sync is in development; see the <a href="../#roadmap" class="inline-link">Roadmap</a>.</span>
+    <span><strong>Your account is real.</strong> Sign-up and sign-in here hit Kinetra's actual backend and your password is hashed before it's stored. The movement stats below are still sample data, since the app doesn't sync your real sessions here yet. See the <a href="../#roadmap" class="inline-link">Roadmap</a>.</span>
   </div>
 
   <section id="kd-auth">
     <div class="kd-auth-wrap">
-      <h1>Preview your dashboard</h1>
-      <p class="kd-auth-sub">Create a local preview account to see what the Kinetra dashboard will look like once account sync ships. No real data, no server — just this browser.</p>
+      <h1 id="kd-auth-heading">Sign in to Kinetra</h1>
+      <p class="kd-auth-sub" id="kd-auth-subtext">Sign in to see your dashboard. New here? Create an account instead.</p>
+
+      <div class="kd-auth-tabs" role="tablist">
+        <button type="button" class="kd-auth-tab is-active" id="kd-tab-signin" role="tab" aria-selected="true">Sign in</button>
+        <button type="button" class="kd-auth-tab" id="kd-tab-signup" role="tab" aria-selected="false">Sign up</button>
+      </div>
+
       <div class="kd-auth-error" id="kd-auth-error"></div>
-      <form id="kd-auth-form">
+
+      <form id="kd-signin-form">
         <div class="kd-field">
-          <label for="kd-name">Name</label>
-          <input id="kd-name" type="text" autocomplete="name" placeholder="Alex Rivera" required>
+          <label for="kd-signin-email">Email</label>
+          <input id="kd-signin-email" type="email" autocomplete="email" placeholder="you@example.com" required>
         </div>
         <div class="kd-field">
-          <label for="kd-email">Email</label>
-          <input id="kd-email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <label for="kd-signin-password">Password</label>
+          <input id="kd-signin-password" type="password" autocomplete="current-password" placeholder="Your password" required>
         </div>
-        <div class="kd-field">
-          <label for="kd-password">Password</label>
-          <input id="kd-password" type="password" autocomplete="new-password" placeholder="At least 4 characters" required>
-        </div>
-        <button type="submit" class="kd-submit">Create preview account</button>
+        <button type="submit" class="kd-submit" id="kd-signin-submit">Sign in</button>
       </form>
-      <p class="kd-auth-note">This preview stores your info only in this browser's local storage — please don't reuse a password you use anywhere else.</p>
+
+      <form id="kd-signup-form" style="display:none;">
+        <div class="kd-field">
+          <label for="kd-signup-name">Name</label>
+          <input id="kd-signup-name" type="text" autocomplete="name" placeholder="Alex Rivera" required>
+        </div>
+        <div class="kd-field">
+          <label for="kd-signup-email">Email</label>
+          <input id="kd-signup-email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="kd-field">
+          <label for="kd-signup-password">Password</label>
+          <input id="kd-signup-password" type="password" autocomplete="new-password" placeholder="At least 8 characters" required>
+        </div>
+        <button type="submit" class="kd-submit" id="kd-signup-submit">Create account</button>
+      </form>
+
+      <p class="kd-auth-note">Your name, email, and a hashed password are sent to Kinetra's backend to create a real account. Nothing else about you is collected here.</p>
     </div>
   </section>
 
@@ -101,7 +146,7 @@
 
         <div class="kd-card">
           <h2>Check-in streak</h2>
-          <p class="kd-card-sub">Each square is a day &mdash; filled means you checked in</p>
+          <p class="kd-card-sub">Each square is a day. Filled means you checked in.</p>
           <div class="kd-streak-grid" id="kd-streak-grid"></div>
         </div>
 

@@ -39,7 +39,36 @@
   color: var(--ink-strong);
   margin: 0 0 8px;
 }
-.kd-auth-sub { color: var(--ink-muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 26px; }
+.kd-auth-sub { color: var(--ink-muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 22px; }
+
+.kd-auth-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  margin-bottom: 20px;
+}
+.kd-auth-tab {
+  flex: 1;
+  border: none;
+  background: none;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.kd-auth-tab.is-active {
+  background: var(--brand-strong);
+  color: #051324;
+}
+.kd-auth-tab:not(.is-active):hover { color: var(--ink-strong); }
+
+.kd-submit:disabled { opacity: 0.6; cursor: default; filter: none; }
 
 .kd-field { margin-bottom: 16px; }
 .kd-field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-body); margin-bottom: 6px; }

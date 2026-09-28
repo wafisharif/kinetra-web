@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Support — Kinetra</title>
+<title>Kinetra Support</title>
 <meta name="description" content="Get help with Kinetra: how to reach out, and answers to common questions." />
 <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,15 +21,40 @@
       Kinetra
     </a>
     <nav class="nav-links">
-      <a href="../#why">Why Kinetra</a>
-      <a href="../#tasks">Task Coverage</a>
-      <a href="../#product">Product</a>
-      <a href="../#capabilities">Capabilities</a>
-      <a href="../#how">How it Works</a>
-      <a href="../#insights">Daily Insights</a>
-      <a href="../#roadmap">Roadmap</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Product
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#why">Why Kinetra</a>
+          <a href="../#tasks">Task Coverage</a>
+          <a href="../#product">Product</a>
+          <a href="../#capabilities">Capabilities</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          How it Works
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#how">How it Works</a>
+          <a href="../#insights">Daily Insights</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Project
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#roadmap">Roadmap</a>
+          <a href="../#status">Status</a>
+          <a href="../support/">Support</a>
+        </div>
+      </div>
       <a href="../dashboard/">Dashboard</a>
-      <a href="../#status">Status</a>
     </nav>
     <div class="nav-actions">
       <a class="btn btn-primary" href="https://apps.apple.com" target="_blank" rel="noopener">Join iOS beta</a>
@@ -50,26 +75,29 @@
 
     <div class="support-card">
       <h3>Get in touch</h3>
-      <p>Questions, bug reports, or feedback on Kinetra go straight to a real person &mdash; there's no ticket system or bot in between.</p>
+      <p>Questions, bug reports, or feedback on Kinetra go straight to a real person. There's no ticket system or bot in between.</p>
       <a class="support-email" href="mailto:wafisharif0@gmail.com">wafisharif0@gmail.com</a>
     </div>
 
     <h2>Common questions</h2>
 
-    <h3>The app is asking for camera access &mdash; why, and is anything recorded without me knowing?</h3>
+    <h3>The app is asking for camera access. Why, and is anything recorded without me knowing?</h3>
     <p>Kinetra needs camera access to record the short movement clips it analyzes. Nothing is recorded until you explicitly start a recording in the app. Recordings are captured muted; audio is never recorded or analyzed.</p>
 
     <h3>What happens to my video after I record it?</h3>
-    <p>It's uploaded to Kinetra's analysis server only to compute your result, then deleted immediately &mdash; it's never stored long-term, viewed by a person, or used for anything else. Full detail is in the <a class="inline-link" href="../privacy/">Privacy Policy</a>.</p>
+    <p>It's uploaded to Kinetra's analysis server only to compute your result, then deleted immediately. It's never stored long-term, viewed by a person, or used for anything else. Full detail is in the <a class="inline-link" href="../privacy/">Privacy Policy</a>.</p>
 
     <h3>My score seems off, or tracking looks wrong. What's going on?</h3>
-    <p>Camera-based pose estimation has real limits: a single 2D camera can't fully resolve depth, and poor lighting, loose clothing, or a joint leaving the frame can all reduce accuracy. Try recording again with the camera roughly perpendicular to your movement, in good lighting, with the full range of motion staying in frame. Kinetra is a movement-awareness tool, not a clinical measurement device &mdash; if you have real concerns about your movement or pain, talk to a doctor, physical therapist, or qualified coach.</p>
+    <p>Camera-based pose estimation has real limits: a single 2D camera can't fully resolve depth, and poor lighting, loose clothing, or a joint leaving the frame can all reduce accuracy. Try recording again with the camera roughly perpendicular to your movement, in good lighting, with the full range of motion staying in frame. Kinetra is a movement-awareness tool, not a clinical measurement device. If you have real concerns about your movement or pain, talk to a doctor, physical therapist, or qualified coach.</p>
 
     <h3>Can I get my data, or delete everything Kinetra has stored?</h3>
-    <p>Kinetra doesn't have user accounts, and almost everything (your session history, calibration, Daily Check-Ins) lives only in local storage on your own phone. Deleting the app removes all of it. If you want something handled differently, email us and it'll be taken care of directly.</p>
+    <p>The app itself has no accounts, and almost everything (your session history, calibration, Daily Check-Ins) lives only in local storage on your own phone. Deleting the app removes all of it. If you've also created a web dashboard account, email us and we'll delete that too. If you want anything handled differently, email us and it'll be taken care of directly.</p>
 
     <h3>What's the "AI Coach" feature, and is it required?</h3>
     <p>It's an optional, opt-in button that sends your recent scores (never video) to an AI service for a short personalized note. It's entirely optional to use, and the app works fully without it.</p>
+
+    <h3>What's the web dashboard, and is it the same as my app data?</h3>
+    <p>The <a class="inline-link" href="../dashboard/">web dashboard</a> is a real account you can sign up for and sign in to from a browser. It's separate from the app: the stats it shows today are sample data, not your real sessions, since the app doesn't sync to it yet. That sync is on the <a class="inline-link" href="../#roadmap">Roadmap</a>.</p>
 
     <h3>Is Kinetra a medical device?</h3>
     <p>No. Kinetra is for movement awareness only, and does not diagnose, treat, or predict any medical condition. See the <a class="inline-link" href="../terms/">Terms of Service</a> for the full statement.</p>

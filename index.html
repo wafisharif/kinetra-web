@@ -43,14 +43,40 @@
         Kinetra
       </a>
       <nav class="nav-links">
-        <a href="#why">Why Kinetra</a>
-        <a href="#tasks">Task Coverage</a>
-        <a href="#product">Product</a>
-        <a href="#how">How it Works</a>
-        <a href="#insights">Daily Insights</a>
-        <a href="#roadmap">Roadmap</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+            Product
+            <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#why">Why Kinetra</a>
+            <a href="#tasks">Task Coverage</a>
+            <a href="#product">Product</a>
+            <a href="#capabilities">Capabilities</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+            How it Works
+            <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#how">How it Works</a>
+            <a href="#insights">Daily Insights</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+            Project
+            <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#roadmap">Roadmap</a>
+            <a href="#status">Status</a>
+            <a href="/support">Support</a>
+          </div>
+        </div>
         <a href="/dashboard/">Dashboard</a>
-        <a href="#status">Status</a>
       </nav>
       <div class="nav-actions">
         <a class="icon-btn" href="https://github.com/wafisharif" target="_blank" rel="noopener" aria-label="GitHub">
@@ -76,8 +102,8 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <h1>Track movement.<br />Understand your <em class="accent" id="heroCycle">recovery</em>.</h1>
-          <p class="lede">Kinetra turns any phone camera into a pose-tracking lab — counting reps, scoring smoothness
-            and symmetry, and fusing it with how you actually feel, without a single wearable.</p>
+          <p class="lede">Kinetra turns any phone camera into a pose-tracking lab. It counts reps, scores smoothness
+            and symmetry, and fuses that with how you actually feel, with no wearable at all.</p>
           <div class="hero-cta-row">
             <a class="btn btn-primary" href="#status">Join the iOS beta</a>
             <a class="btn btn-secondary" href="https://github.com/wafisharif" target="_blank" rel="noopener">
@@ -92,7 +118,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
               <path d="M20 6L9 17l-5-5" />
             </svg>
-            Video is analyzed and discarded — nothing is uploaded to train a model.
+            Video is analyzed and discarded. Nothing is uploaded to train a model.
           </div>
         </div>
 
@@ -155,8 +181,8 @@
           <div class="feature-item reveal">
             <div class="num">01</div>
             <h3>Camera-only pose tracking</h3>
-            <p>MediaPipe-based pose estimation runs on a normal video recording — no wearable sensors, no special
-              hardware, no gym equipment.</p>
+            <p>MediaPipe-based pose estimation runs on a normal video recording, with no wearable sensors, no special
+              hardware, and no gym equipment.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">02</div>
@@ -167,7 +193,7 @@
           <div class="feature-item reveal">
             <div class="num">03</div>
             <h3>Honest, non-diagnostic coaching</h3>
-            <p>An optional AI coaching layer reads your scores and trends — never your video — and is explicit that it
+            <p>An optional AI coaching layer reads your scores and trends, never your video, and says plainly that it
               isn't a medical diagnosis.</p>
           </div>
         </div>
@@ -234,7 +260,7 @@
           <div class="product-card reveal">
             <span class="tag">Backend</span>
             <h3>Analysis Engine</h3>
-            <p>A Flask + MediaPipe service that turns a video into joint angles, rep counts, and per-task scores —
+            <p>A Flask + MediaPipe service that turns a video into joint angles, rep counts, and per-task scores. It's
               deployed on Render, with an optional server-side AI coaching endpoint that never sees raw video.</p>
           </div>
         </div>
@@ -283,13 +309,13 @@
           <div class="product-card reveal">
             <span class="tag">Motivation</span>
             <h3>Streaks &amp; Badges</h3>
-            <p>Earned by showing up and testing fully — never by posting a high score. A three-day streak counts the same whether the score was a 62 or a 96.</p>
+            <p>Earned by showing up and testing fully, never by posting a high score. A three-day streak counts the same whether the score was a 62 or a 96.</p>
           </div>
           <div class="product-card reveal">
-            <span class="tag">New</span>
+            <span class="tag">Accounts</span>
             <h3>Web Dashboard</h3>
-            <p>Preview the browser dashboard we're building — score trends, streaks, and a coach roster view — ahead of full account sync.</p>
-            <a class="btn btn-secondary" href="/dashboard/" style="margin-top:16px;">Try the preview</a>
+            <p>A real account you can sign in to from any browser. Session stats are still sample data for now, since the app doesn't sync your real history here yet.</p>
+            <a class="btn btn-secondary" href="/dashboard/" style="margin-top:16px;">Sign in</a>
           </div>
         </div>
       </div>
@@ -309,7 +335,7 @@
               <h3>Kinetra Calibration</h3>
               <p>Most rep-counters assume everyone's "full range of motion" looks the same. Kinetra records your own
                 observed angle range per arm during a short calibration pass, then derives rep-detection thresholds from
-                that — so a smaller natural range isn't scored as a failed rep.</p>
+                that, so a smaller natural range isn't scored as a failed rep.</p>
               <a class="btn btn-secondary" href="#status">See it in the beta</a>
             </div>
             <ul class="step-list">
@@ -331,7 +357,7 @@
               <li>
                 <div class="step-k">04</div>
                 <div class="step-t">Recalibrate any time</div>
-                <div class="step-d">Range of motion changes during recovery — your baseline can too.</div>
+                <div class="step-d">Range of motion changes during recovery, and your baseline can change with it.</div>
               </li>
             </ul>
           </div>
@@ -348,7 +374,7 @@
             </div>
             <div class="subfeature">
               <h4>Recalibrate anytime</h4>
-              <p>A visible reset in Settings, since a moving target — recovery — needs a baseline that can move too.</p>
+              <p>A visible reset in Settings, since recovery is a moving target and needs a baseline that can move with it.</p>
             </div>
           </div>
         </div>
@@ -362,7 +388,7 @@
           <div class="section-head reveal" style="margin-bottom: 34px;">
             <span class="eyebrow">Daily Insights</span>
             <h2>Fusing how you feel with what the camera measures.</h2>
-            <p>A 30-second, no-camera check-in feeds a rule-based engine that looks for real patterns — not for reasons
+            <p>A 30-second, no-camera check-in feeds a rule-based engine built to find real patterns, not an excuse
               to send a notification.</p>
           </div>
           <div class="insight-blocks">
@@ -374,13 +400,13 @@
             <div class="insight-block reveal">
               <h4>Insight Engine</h4>
               <p>Cross-references check-ins against recorded scores: a streak counter, a soreness-to-score correlation
-                per task, and a left/right asymmetry detector — each gated behind a minimum sample size, so it only
+                per task, and a left/right asymmetry detector, each gated behind a minimum sample size, so it only
                 speaks when there's evidence.</p>
             </div>
             <div class="insight-block reveal">
               <h4>Evidence over engagement</h4>
               <p>A correlation only surfaces with at least two comparable sore and clear sessions within a 36-hour
-                window, and a real gap between them. No pattern, no insight — on purpose.</p>
+                window, and a real gap between them. No pattern, no insight. On purpose.</p>
             </div>
           </div>
         </div>
@@ -407,7 +433,7 @@
           </div>
           <div class="insight-preview-card">
             <span class="tag">Correlation</span>
-            <p>"Reach scores are lower on days you log shoulder soreness — worth mentioning at your next check-in."</p>
+            <p>"Reach scores are lower on days you log shoulder soreness. Worth mentioning at your next check-in."</p>
           </div>
           <div class="insight-preview-card">
             <span class="tag">Asymmetry</span>
@@ -438,7 +464,7 @@
           <div class="feature-item reveal">
             <div class="num">03</div>
             <h3>Curious self-trackers</h3>
-            <p>Wondering whether your range of motion, balance, or day-to-day feeling is really changing over weeks, not just how it feels today.</p>
+            <p>Wondering whether your range of motion, balance, or day-to-day feeling is really changing week to week, beyond how any single day feels.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">04</div>
@@ -455,14 +481,21 @@
         <div class="section-head reveal">
           <span class="eyebrow">What's next</span>
           <h2>The honest roadmap.</h2>
-          <p>Kinetra is in active development. Here's what's actually being worked on — not a promise of dates, just where the attention is going.</p>
+          <p>Kinetra is in active development. Here's what's actually being worked on: not a promise of dates, just where the attention is going.</p>
         </div>
 
         <div class="roadmap-list reveal">
           <div class="roadmap-row">
             <div>
-              <div class="roadmap-title">Web Dashboard &amp; Account Sync</div>
-              <p class="roadmap-desc">An optional account that syncs real scores, streaks, and Insights to the browser dashboard you can <a href="/dashboard/" class="inline-link">preview today</a>. The app stays fully usable with zero account, same as now.</p>
+              <div class="roadmap-title">Account Sign-In</div>
+              <p class="roadmap-desc">A real account, live today: sign up or sign in from the <a href="/dashboard/" class="inline-link">browser dashboard</a>. The app stays fully usable with zero account, same as now.</p>
+            </div>
+            <div class="roadmap-tag tag-live">Live</div>
+          </div>
+          <div class="roadmap-row">
+            <div>
+              <div class="roadmap-title">Real Movement Data Sync</div>
+              <p class="roadmap-desc">Pushing your actual scores, streaks, and Insights from the app into your account, so the dashboard shows your real history instead of sample data.</p>
             </div>
             <div class="roadmap-tag tag-development">In development</div>
           </div>
@@ -476,14 +509,14 @@
           <div class="roadmap-row">
             <div>
               <div class="roadmap-title">Team Leaderboards &amp; Shared Roster</div>
-              <p class="roadmap-desc">An extension of Team Screening: a shared roster view a whole coaching staff can check, not just the person who ran the screen.</p>
+              <p class="roadmap-desc">An extension of Team Screening: a shared roster view the whole coaching staff can check, so it isn't limited to the person who ran the screen.</p>
             </div>
             <div class="roadmap-tag tag-planned">Planned</div>
           </div>
           <div class="roadmap-row">
             <div>
               <div class="roadmap-title">PDF Session Reports</div>
-              <p class="roadmap-desc">A clean, printable summary of a session or a date range — built for handing to a coach or physical therapist.</p>
+              <p class="roadmap-desc">A clean, printable summary of a session or a date range, built for handing to a coach or physical therapist.</p>
             </div>
             <div class="roadmap-tag tag-planned">Planned</div>
           </div>
@@ -516,7 +549,7 @@
             <div class="roadmap-tag tag-exploring">Exploring</div>
           </div>
         </div>
-        <p class="roadmap-note">Have a feature you actually want? Say so at <a href="/support" class="inline-link">kinetraapp.com/support</a> — this list changes based on real feedback, not the other way around.</p>
+        <p class="roadmap-note">Have a feature you actually want? Say so at <a href="/support" class="inline-link">kinetraapp.com/support</a>. This list changes based on real feedback, not the other way around.</p>
       </div>
     </section>
 
@@ -527,7 +560,7 @@
           <div>
             <span class="status-pill"><span class="dot"></span>Private beta &middot; iOS</span>
             <h2>Currently a one-person build, in real testing.</h2>
-            <p>Kinetra is an independent project — no company, no funding round, just a working pipeline from a phone
+            <p>Kinetra is an independent project: no company, no funding round, just a working pipeline from a phone
               camera to a movement score, running on real hardware. The source is open for anyone who wants to read it,
               fork it, or point out what's wrong with it.</p>
           </div>
@@ -568,7 +601,7 @@
             <li><a href="#why">Why Kinetra</a></li>
             <li><a href="#capabilities">Capabilities</a></li>
             <li><a href="#how">How it works</a></li>
-            <li><a href="/dashboard/">Dashboard preview</a></li>
+            <li><a href="/dashboard/">Dashboard</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -597,6 +630,7 @@
     </div>
   </footer>
 
+  <script src="js/nav.js"></script>
   <script src="js/main.js"></script>
 </body>
 

@@ -41,20 +41,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }, 4000);
 })();
 
-/* ---------------------------------------------------------------------- */
-/* Mobile nav toggle                                                       */
-/* ---------------------------------------------------------------------- */
-(function mobileNav() {
-  const toggle = document.querySelector('.nav-toggle');
-  const links = document.querySelector('.nav-links');
-  if (!toggle || !links) return;
-  toggle.addEventListener('click', () => {
-    const open = links.style.display === 'flex';
-    links.style.cssText = open
-      ? ''
-      : 'display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:#0a0b0d;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);gap:18px;';
-  });
-})();
+/* Mobile nav toggle and nav dropdowns now live in nav.js, shared by every
+   page (see that file for why this moved out of main.js). */
 
 /* ---------------------------------------------------------------------- */
 /* Hero headline word cycle                                                */
@@ -569,7 +557,7 @@ function startPoseLoop(canvas, getTask, period) {
     'arm-raise': {
       eyebrow: 'ARM RAISE',
       title: 'Lateral raise range of motion',
-      desc: 'Scores a controlled raise to shoulder height and back down — the same pattern used to check for early rotator-cuff or shoulder impingement limits.',
+      desc: 'Scores a controlled raise to shoulder height and back down. It\'s the same pattern used to check for early rotator-cuff or shoulder impingement limits.',
       points: ['Range of motion vs. your calibrated baseline', 'Left/right comparison', 'Control on the way back down'],
       period: 2.4,
     },
@@ -590,7 +578,7 @@ function startPoseLoop(canvas, getTask, period) {
     tug: {
       eyebrow: 'TIMED UP & GO',
       title: 'Sit, walk, turn, sit',
-      desc: 'Combines a chair rise, a short walk, a turn, and a return to seated — one of the most-used composite mobility screens in clinical practice.',
+      desc: 'Combines a chair rise, a short walk, a turn, and a return to seated. It\'s one of the most-used composite mobility screens in clinical practice.',
       points: ['Full-sequence timing', 'Transition smoothness between phases', 'Turn stability'],
       period: 5.5,
     },

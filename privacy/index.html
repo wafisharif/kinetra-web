@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Privacy Policy — Kinetra</title>
+<title>Kinetra Privacy Policy</title>
 <meta name="description" content="Kinetra's Privacy Policy: what data the app collects, what stays on your device, and what (little) ever leaves it." />
 <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,15 +21,40 @@
       Kinetra
     </a>
     <nav class="nav-links">
-      <a href="../#why">Why Kinetra</a>
-      <a href="../#tasks">Task Coverage</a>
-      <a href="../#product">Product</a>
-      <a href="../#capabilities">Capabilities</a>
-      <a href="../#how">How it Works</a>
-      <a href="../#insights">Daily Insights</a>
-      <a href="../#roadmap">Roadmap</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Product
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#why">Why Kinetra</a>
+          <a href="../#tasks">Task Coverage</a>
+          <a href="../#product">Product</a>
+          <a href="../#capabilities">Capabilities</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          How it Works
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#how">How it Works</a>
+          <a href="../#insights">Daily Insights</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Project
+          <svg class="nav-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="../#roadmap">Roadmap</a>
+          <a href="../#status">Status</a>
+          <a href="../support/">Support</a>
+        </div>
+      </div>
       <a href="../dashboard/">Dashboard</a>
-      <a href="../#status">Status</a>
     </nav>
     <div class="nav-actions">
       <a class="btn btn-primary" href="https://apps.apple.com" target="_blank" rel="noopener">Join iOS beta</a>
@@ -50,18 +75,20 @@
 
     <div class="legal-callout">
       In one paragraph: Kinetra collects the minimum data needed to compute and show
-      you a movement score, keeps almost everything on your own device, and has no
-      user accounts, ads, or third-party analytics or tracking of any kind. The one
-      thing that leaves your device by default is a video clip sent to Kinetra's own
-      analysis server for processing &mdash; deleted immediately after. The one
-      <em>optional</em> thing that can leave your device is a small set of numbers
-      sent to a third-party AI service, and only if you tap "Ask AI" yourself.
+      you a movement score, keeps almost everything on your own device, and runs no
+      ads and no third-party analytics or tracking of any kind. The app itself has no
+      account system. The one thing that leaves your device by default is a video clip
+      sent to Kinetra's own analysis server for processing, deleted immediately after.
+      The one <em>optional</em> thing that can leave your device is a small set of
+      numbers sent to a third-party AI service, and only if you tap "Ask AI" yourself.
+      A separate, optional web dashboard does have real sign-in accounts. See Section 4.
     </div>
 
     <ul class="legal-toc">
       <li><a href="#video">Video &amp; camera data</a></li>
       <li><a href="#device">What's stored on your device</a></li>
       <li><a href="#checkins">Daily Check-Ins &amp; Insights</a></li>
+      <li><a href="#dashboard-accounts">Web dashboard accounts</a></li>
       <li><a href="#aicoach">AI Coach</a></li>
       <li><a href="#limits">Accuracy limitations</a></li>
       <li><a href="#minors">Data about minors</a></li>
@@ -88,29 +115,34 @@
       <li>Your reminder time preference and Consistency Streak / badge progress.</li>
       <li>A record of whether you've seen onboarding and the current "What's New" screen.</li>
     </ul>
-    <p>None of this is backed up to any cloud account, because Kinetra does not have user accounts. If you delete the app or clear its data, this information is gone &mdash; Kinetra cannot recover it for you.</p>
+    <p>None of this is backed up automatically. The app itself still has no account system, so if you delete the app or clear its data, this information is gone and Kinetra cannot recover it for you.</p>
 
     <h2 id="checkins">3. Daily Check-Ins &amp; Insights</h2>
-    <p>Kinetra's optional Daily Check-In lets you log a general feeling rating (1&ndash;5) and any sore areas, without recording video. This is stored only in the app's local storage on your device, exactly like the session results above &mdash; it is never uploaded, never transmitted to Kinetra's backend, and never sent to any third party.</p>
+    <p>Kinetra's optional Daily Check-In lets you log a general feeling rating (1&ndash;5) and any sore areas, without recording video. This is stored only in the app's local storage on your device, exactly like the session results above. It is never uploaded, never transmitted to Kinetra's backend, and never sent to any third party.</p>
     <p>The Insights screen compares your Daily Check-Ins against your recorded session scores (streaks, soreness-vs-score correlation, left/right asymmetry) entirely on your device. Nothing about this computation leaves your phone.</p>
 
-    <h2 id="aicoach">4. AI Coach (optional, off unless configured)</h2>
-    <p>If enabled, tapping "Ask AI for a Personal Note" sends the following to a third-party AI service, and nothing else: the task name, your most recent numeric score, letter grade, and confidence grade; which side you recorded; whether you've calibrated; and up to your last several numeric scores for that same task, for trend context.</p>
-    <p>It never sends: video, raw pose/joint position data, or any personal identifier beyond a task label you may have typed in yourself. This request goes through Kinetra's own backend server, which holds the API credential &mdash; your phone never does. This feature is opt-in per use and fails closed: if the feature has not been configured, tapping the button tells you so and sends nothing anywhere.</p>
+    <h2 id="dashboard-accounts">4. Web dashboard accounts</h2>
+    <p>The browser dashboard at kinetraapp.com/dashboard is separate from the mobile app and is the one part of Kinetra with a real account system. Creating an account there means giving a name, an email address, and a password, all sent to Kinetra's backend server over HTTPS. Your password is hashed before it's ever stored, so Kinetra itself cannot see or recover your plain password.</p>
+    <p>The movement stats, streaks, and sessions currently shown in the dashboard are sample data, not your real history, since the app does not yet send your actual sessions there. That's on the <a class="inline-link" href="../#roadmap">Roadmap</a>. Your dashboard account and the app's on-device data are not connected today.</p>
+    <p>You can have your dashboard account and its data deleted at any time by emailing the contact below.</p>
 
-    <h2 id="limits">5. Known accuracy limitations</h2>
+    <h2 id="aicoach">5. AI Coach (optional, off unless configured)</h2>
+    <p>If enabled, tapping "Ask AI for a Personal Note" sends the following to a third-party AI service, and nothing else: the task name, your most recent numeric score, letter grade, and confidence grade; which side you recorded; whether you've calibrated; and up to your last several numeric scores for that same task, for trend context.</p>
+    <p>It never sends: video, raw pose/joint position data, or any personal identifier beyond a task label you may have typed in yourself. This request goes through Kinetra's own backend server, which holds the API credential, so your phone never does. This feature is opt-in per use and fails closed: if the feature has not been configured, tapping the button tells you so and sends nothing anywhere.</p>
+
+    <h2 id="limits">6. Known accuracy limitations</h2>
     <p>Because this affects what "your data" actually represents: a single 2D camera cannot fully resolve depth, so movement directly toward or away from the camera is measured less reliably than side-to-side movement. Poor lighting, loose clothing, or a joint leaving the frame all reduce tracking accuracy. Kinetra has not been independently validated against a clinical, marker-based motion-capture system.</p>
 
-    <h2 id="minors">6. Data about minors</h2>
+    <h2 id="minors">7. Data about minors</h2>
     <p>Kinetra's Team Screening mode lets an adult (a coach or teacher) attach a name to someone else's recorded movement check. The app does not distinguish an adult teammate from a minor, and does not collect a parent's or guardian's consent itself. If you're screening anyone under 18, get their parent's or guardian's permission before recording them.</p>
 
-    <h2 id="ads">7. No ads, no third-party trackers</h2>
+    <h2 id="ads">8. No ads, no third-party trackers</h2>
     <p>Kinetra contains no advertising SDK, no third-party analytics enabled by default, and does not sell or share data with data brokers. An optional, off-by-default crash-reporting integration exists in the app for diagnosing bugs; it ships disabled and reports only error details, never movement data, video, or personal information.</p>
 
-    <h2 id="choices">8. Your choices</h2>
-    <p>You can clear all locally stored data by deleting the app, or using the in-app calibration reset and "Clear Check-In History" controls. Because there is no account system, there is no separate "export my data" or "delete my account" flow beyond that. If you want something about your stored data handled differently, email the contact below.</p>
+    <h2 id="choices">9. Your choices</h2>
+    <p>You can clear all locally stored data by deleting the app, or using the in-app calibration reset and "Clear Check-In History" controls. The app itself has no "export my data" or "delete my account" flow beyond that, since it has no accounts. For the web dashboard account described in Section 4, email the contact below to have it deleted.</p>
 
-    <h2 id="contact">9. Contact</h2>
+    <h2 id="contact">10. Contact</h2>
     <p>Questions about this policy, or a request regarding your data: <a class="inline-link" href="mailto:wafisharif0@gmail.com">wafisharif0@gmail.com</a></p>
     <p>This policy will be updated as the app's actual data handling changes. Material changes will be reflected in the app's "What's New" screen. See also the <a class="inline-link" href="../terms/">Terms of Service</a>.</p>
   </div>

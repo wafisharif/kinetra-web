@@ -332,6 +332,79 @@ html.js-reveal .reveal.is-visible {
   display: none;
 }
 
+/* Nav dropdowns: click-to-open groups (Product / How it Works / Project),
+   replacing what used to be flat individual links. Click rather than hover
+   so the same markup and JS work for mouse, touch, and keyboard alike. */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.nav-dropdown-toggle:hover {
+  color: var(--ink-strong);
+}
+
+.nav-dropdown.is-open .nav-dropdown-toggle {
+  color: var(--ink-strong);
+}
+
+.nav-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown.is-open .nav-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 18px;
+  min-width: 190px;
+  padding: 10px;
+  background: #0a0b0d;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.nav-dropdown.is-open .nav-dropdown-menu {
+  display: flex;
+}
+
+.nav-dropdown-menu a {
+  font-size: 13px;
+  color: var(--ink-muted);
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-dropdown-menu a:hover {
+  color: var(--ink-strong);
+  background: var(--surface-2);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1125,6 +1198,12 @@ html.js-reveal .reveal.is-visible {
   margin-top: 2px;
 }
 
+.tag-live {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.35);
+  background: rgba(74, 222, 128, 0.08);
+}
+
 .tag-development {
   color: var(--accent-teal);
   border-color: rgba(127, 224, 200, 0.35);
@@ -1295,6 +1374,43 @@ html.js-reveal .reveal.is-visible {
 @media (max-width: 720px) {
   .nav-links {
     display: none;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: #0a0b0d;
+    padding: 14px 24px 20px;
+    border-bottom: 1px solid var(--line-soft);
+    gap: 2px;
+  }
+
+  .nav-links.is-open > a {
+    padding: 12px 4px;
+    text-align: center;
+  }
+
+  .nav-dropdown-toggle {
+    justify-content: center;
+    width: 100%;
+    padding: 12px 4px;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    transform: none;
+    margin-top: 0;
+    min-width: 0;
+    padding: 0 0 6px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    align-items: center;
   }
 
   .nav-toggle {
