@@ -11,7 +11,7 @@
  * roster below are generated deterministically from your account id, so
  * they look the same every time you sign back in, but they are not your
  * real sessions from the Kinetra app. The app doesn't push real data to
- * this backend yet; that's the "Real Movement Data Sync" item on the
+ * this backend yet; that's the "Movement Data Sync" item on the
  * Roadmap.
  */
 (function () {
@@ -404,7 +404,7 @@
       heading.textContent = signingIn ? "Sign in to Kinetra" : "Create your Kinetra account";
       subtext.textContent = signingIn
         ? "Sign in to see your dashboard. New here? Create an account instead."
-        : "Sign up with a real email and password. Your password is hashed before it's stored.";
+        : "Sign up with your email and a password. Your password is hashed before it's stored.";
     }
     if (tabSignIn && tabSignUp) {
       tabSignIn.addEventListener("click", function () { setTab("signin"); });

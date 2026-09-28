@@ -31,7 +31,7 @@
   <!-- Announcement banner -->
   <div class="banner">
     <strong>Kinetra&nbsp;Beta</strong>
-    <span>Now running as a real ad hoc build on iOS hardware.</span>
+    <span>Now running as an ad hoc build on physical iOS hardware.</span>
     <a href="#status">See project status →</a>
   </div>
 
@@ -181,14 +181,12 @@
           <div class="feature-item reveal">
             <div class="num">01</div>
             <h3>Camera-only pose tracking</h3>
-            <p>MediaPipe-based pose estimation runs on a normal video recording, with no wearable sensors, no special
-              hardware, and no gym equipment.</p>
+            <p>MediaPipe-based pose estimation runs on a normal video recording. No wearables, no special hardware needed.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">02</div>
             <h3>Per-limb calibration</h3>
-            <p>A one-time calibration flow learns your own observed range of motion per arm, so thresholds are relative
-              to you, not a generic default.</p>
+            <p>A one-time calibration flow learns your own observed range of motion per arm, so rep-detection thresholds come from that instead of a generic default.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">03</div>
@@ -314,7 +312,7 @@
           <div class="product-card reveal">
             <span class="tag">Accounts</span>
             <h3>Web Dashboard</h3>
-            <p>A real account you can sign in to from any browser. Session stats are still sample data for now, since the app doesn't sync your real history here yet.</p>
+            <p>An account you can sign in to from any browser. The session stats are sample data for now, since the app doesn't sync your history here yet.</p>
             <a class="btn btn-secondary" href="/dashboard/" style="margin-top:16px;">Sign in</a>
           </div>
         </div>
@@ -326,7 +324,7 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">How it Works</span>
-          <h2>Calibrated to your body, not a generic default.</h2>
+          <h2>Calibrated to your own range of motion.</h2>
         </div>
         <div class="deepdive reveal">
           <div class="deepdive-top">
@@ -388,8 +386,7 @@
           <div class="section-head reveal" style="margin-bottom: 34px;">
             <span class="eyebrow">Daily Insights</span>
             <h2>Fusing how you feel with what the camera measures.</h2>
-            <p>A 30-second, no-camera check-in feeds a rule-based engine built to find real patterns, not an excuse
-              to send a notification.</p>
+            <p>A 30-second, no-camera check-in feeds a rule-based engine that waits for enough evidence before it says anything.</p>
           </div>
           <div class="insight-blocks">
             <div class="insight-block reveal">
@@ -405,8 +402,7 @@
             </div>
             <div class="insight-block reveal">
               <h4>Evidence over engagement</h4>
-              <p>A correlation only surfaces with at least two comparable sore and clear sessions within a 36-hour
-                window, and a real gap between them. No pattern, no insight. On purpose.</p>
+              <p>A correlation only surfaces once there are at least two comparable sore and clear sessions within a 36-hour window, with enough of a gap between them to mean something. Without that, nothing shows up.</p>
             </div>
           </div>
         </div>
@@ -481,21 +477,21 @@
         <div class="section-head reveal">
           <span class="eyebrow">What's next</span>
           <h2>The honest roadmap.</h2>
-          <p>Kinetra is in active development. Here's what's actually being worked on: not a promise of dates, just where the attention is going.</p>
+          <p>Kinetra is in active development. Here's what's actually being worked on, though nothing below has a fixed date yet.</p>
         </div>
 
         <div class="roadmap-list reveal">
           <div class="roadmap-row">
             <div>
               <div class="roadmap-title">Account Sign-In</div>
-              <p class="roadmap-desc">A real account, live today: sign up or sign in from the <a href="/dashboard/" class="inline-link">browser dashboard</a>. The app stays fully usable with zero account, same as now.</p>
+              <p class="roadmap-desc">Live today: sign up or sign in from the <a href="/dashboard/" class="inline-link">browser dashboard</a>. The app stays fully usable with zero account, same as now.</p>
             </div>
             <div class="roadmap-tag tag-live">Live</div>
           </div>
           <div class="roadmap-row">
             <div>
-              <div class="roadmap-title">Real Movement Data Sync</div>
-              <p class="roadmap-desc">Pushing your actual scores, streaks, and Insights from the app into your account, so the dashboard shows your real history instead of sample data.</p>
+              <div class="roadmap-title">Movement Data Sync</div>
+              <p class="roadmap-desc">Pushing your actual scores, streaks, and Insights from the app into your account, so the dashboard shows your history instead of sample data.</p>
             </div>
             <div class="roadmap-tag tag-development">In development</div>
           </div>
@@ -549,7 +545,7 @@
             <div class="roadmap-tag tag-exploring">Exploring</div>
           </div>
         </div>
-        <p class="roadmap-note">Have a feature you actually want? Say so at <a href="/support" class="inline-link">kinetraapp.com/support</a>. This list changes based on real feedback, not the other way around.</p>
+        <p class="roadmap-note">Have a feature you actually want? Say so at <a href="/support" class="inline-link">kinetraapp.com/support</a>. This list changes based on what people actually ask for.</p>
       </div>
     </section>
 
@@ -559,15 +555,13 @@
         <div class="status-card reveal">
           <div>
             <span class="status-pill"><span class="dot"></span>Private beta &middot; iOS</span>
-            <h2>Currently a one-person build, in real testing.</h2>
-            <p>Kinetra is an independent project: no company, no funding round, just a working pipeline from a phone
-              camera to a movement score, running on real hardware. The source is open for anyone who wants to read it,
-              fork it, or point out what's wrong with it.</p>
+            <h2>Currently a one-person build, being tested every day.</h2>
+            <p>Kinetra is a one-person, independent project: no company or funding round behind it, just a working pipeline that turns phone-camera video into a movement score. The source is open for anyone who wants to read it, fork it, or point out what's wrong with it.</p>
           </div>
           <div class="status-actions">
             <a class="btn btn-primary" href="https://github.com/wafisharif" target="_blank" rel="noopener">View the code
               on GitHub</a>
-            <a class="btn btn-secondary" href="mailto:wafisharif0@gmail.com">Ask about the beta</a>
+            <a class="btn btn-secondary" href="mailto:wafi@kinetraapp.com">Ask about the beta</a>
           </div>
         </div>
       </div>
@@ -616,7 +610,7 @@
         <div class="footer-col">
           <h5>Company</h5>
           <ul>
-            <li><a href="mailto:wafisharif0@gmail.com">Contact</a></li>
+            <li><a href="mailto:wafi@kinetraapp.com">Contact</a></li>
             <li><a href="/support">Support</a></li>
             <li><a href="/privacy">Privacy Policy</a></li>
             <li><a href="/terms">Terms of Use</a></li>
