@@ -139,6 +139,18 @@
 }
 @media (max-width: 760px) { .kd-grid { grid-template-columns: 1fr; } }
 
+.kd-empty-sync {
+  background: var(--surface-1);
+  border: 1px dashed var(--line-soft);
+  border-radius: var(--radius-card-lg);
+  padding: 28px 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.kd-empty-sync h2 { font-size: 16px; color: var(--ink-strong); margin: 0 0 8px; }
+.kd-empty-sync p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.6; max-width: 480px; margin: 0 auto; }
+.kd-empty-sync strong { color: var(--ink-strong); }
+
 .kd-card {
   background: var(--surface-1);
   border: 1px solid var(--line-soft);

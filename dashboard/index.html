@@ -82,7 +82,7 @@
 
   <div class="kd-banner">
     <span>&#9888;</span>
-    <span><strong>Sign-up and sign-in here hit Kinetra's actual backend.</strong> Your password is hashed before it's stored. The movement stats below are still sample data, since the app doesn't sync your sessions here yet. See the <a href="../#roadmap" class="inline-link">Roadmap</a>.</span>
+    <span><strong>Sign-up and sign-in here hit Kinetra's actual backend.</strong> Your password is hashed before it's stored. The stats below are your real sessions, check-ins, and calibration -- synced from the app once you sign in to this same account under Settings &rarr; Web Dashboard Sync.</span>
   </div>
 
   <section id="kd-auth">
@@ -135,11 +135,16 @@
       <button class="kd-signout" id="kd-signout">Sign out</button>
     </div>
 
-    <div class="kd-grid">
+    <div class="kd-empty-sync" id="kd-empty-sync" style="display:none;">
+      <h2>No synced data yet</h2>
+      <p>Open Kinetra on your phone, go to <strong>Settings &rarr; Web Dashboard Sync</strong>, and sign in with this same account. Your sessions, check-ins, and calibration will show up here right after.</p>
+    </div>
+
+    <div class="kd-grid" id="kd-grid">
       <div>
         <div class="kd-card">
           <h2>Movement score trend</h2>
-          <p class="kd-card-sub">Last 28 days &middot; sample data</p>
+          <p class="kd-card-sub" id="kd-chart-sub">Synced from the app</p>
           <div class="kd-stat-row">
             <div class="kd-stat">
               <div class="kd-stat-value" id="kd-latest-score">--</div>
@@ -161,7 +166,7 @@
 
         <div class="kd-card">
           <h2>Recent sessions</h2>
-          <p class="kd-card-sub">Sample sessions</p>
+          <p class="kd-card-sub" id="kd-sessions-sub">Your most recent recordings</p>
           <div id="kd-sessions"></div>
         </div>
       </div>
