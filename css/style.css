@@ -28,6 +28,7 @@
 
   /* ---- secondary accents (mirrors the app's own status colors) ---- */
   --accent-teal: #7fe0c8;
+  --accent-teal-deep: #2f9c80;
   --accent-violet: #b3a6ff;
   --accent-amber: #f5c97b;
   --accent-coral: #ff9d9d;
@@ -818,6 +819,32 @@ html.js-reveal .reveal.is-visible {
   height: 100%;
 }
 
+/* The 2-Minute Reset demo reuses .task-panel wholesale (see Task Coverage
+   above) but leans teal instead of brand blue, so it reads as the calmer,
+   no-camera counterpart rather than another clinical measurement. */
+.reset-panel .task-panel-demo {
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(127, 224, 200, 0.14), transparent 60%),
+    var(--surface-2);
+}
+
+/* Carries the teal identity up into the section head too, so the whole
+   section reads as one thing rather than just a differently-colored demo.
+   --accent-teal-deep mirrors the brandDeep passed to drawPose() for this
+   canvas in main.js -- same color, two places it needs to exist. */
+#reset .eyebrow {
+  color: var(--accent-teal);
+}
+
+#reset .eyebrow::before {
+  background: var(--accent-teal);
+  box-shadow: 0 0 12px 2px rgba(127, 224, 200, 0.32);
+}
+
+#reset .task-panel-copy li svg {
+  color: var(--accent-teal-deep);
+}
+
 /* ==========================================================================
    Product cards
    ========================================================================== */
@@ -1149,10 +1176,14 @@ html.js-reveal .reveal.is-visible {
 }
 
 /* ==========================================================================
-   Personas (4-up variant of .feature-list)
+   Personas (4-up and 6-up variants of .feature-list)
    ========================================================================== */
 .feature-list.cols-4 {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.feature-list.cols-6 {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* ==========================================================================
@@ -1371,6 +1402,10 @@ html.js-reveal .reveal.is-visible {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .feature-list.cols-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .roadmap-row {
     grid-template-columns: 1fr;
   }
@@ -1481,6 +1516,10 @@ html.js-reveal .reveal.is-visible {
   }
 
   .feature-list.cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-list.cols-6 {
     grid-template-columns: 1fr;
   }
 }

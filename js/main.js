@@ -50,7 +50,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 (function heroCycle() {
   const el = document.getElementById('heroCycle');
   if (!el) return;
-  const words = ['recovery', 'progress', 'strength', 'consistency', 'form'];
+  const words = ['recovery', 'progress', 'strength', 'consistency', 'form', 'mobility'];
   let i = 0;
   setInterval(() => {
     i = (i + 1) % words.length;
@@ -77,6 +77,26 @@ function extendAngle(base, length, angleRad) {
 function lerp(a, b, t) { return a + (b - a) * t; }
 function easeInOut(t) { return (1 - Math.cos(Math.PI * t)) / 2; }
 
+// Small color helpers so drawPose's glow can be tinted to whatever brand
+// color a given demo passes in (blue for the clinical demos, teal for the
+// calm 2-Minute Reset one) instead of a second hardcoded color living
+// alongside the first.
+function hexToRgb(hex) {
+  const clean = hex.replace('#', '');
+  const full = clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean;
+  const n = parseInt(full, 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+function rgba(hex, alpha) {
+  const { r, g, b } = hexToRgb(hex);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+function lighten(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  const mix = (c) => Math.round(c + (255 - c) * amount);
+  return { r: mix(r), g: mix(g), b: mix(b) };
+}
+
 // Segment lengths, in abstract units (scaled to canvas at draw time).
 const SEG = {
   torso: 0.5,
@@ -99,6 +119,7 @@ function computePose(task, p) {
   let kneeFlex = 0; // additional forward bend at the knee
   let shoulderAngle = 0.18; // resting arm, slightly forward of vertical-down
   let elbowBend = 0.35; // slight natural elbow bend at rest
+  let breath = 0; // 0..1, only set by 'reset' below; drives the breathing-ring overlay
 
   switch (task) {
     case 'sit-to-stand': {
@@ -177,6 +198,20 @@ function computePose(task, p) {
       }
       break;
     }
+    case 'reset': {
+      // A slow, calm loop for the 2-Minute Reset demo -- deliberately not
+      // one of the six clinical tasks above. `period` is set to exactly
+      // 10s by the caller (4s inhale + 6s exhale, matching the app's real
+      // Deep Breathing step), so `p` here doubles as the breath phase.
+      breath = p < 0.4 ? easeInOut(p / 0.4) : easeInOut(1 - (p - 0.4) / 0.6);
+      torsoLean = 0.08 - 0.03 * breath + 0.05 * Math.sin(2 * Math.PI * p);
+      hipShift.y = -0.05 * breath;
+      shoulderAngle = 0.15 + 0.4 * Math.sin(2 * Math.PI * p);
+      elbowBend = 0.3 + 0.08 * Math.sin(2 * Math.PI * p + 1);
+      hipFlex = 0.03;
+      kneeFlex = 0.06;
+      break;
+    }
     default:
       break;
   }
@@ -196,6 +231,8 @@ function computePose(task, p) {
     // layer below can show a real reading (e.g. "Knee flexion: 92°")
     // instead of a made-up number.
     angles: { torsoLean, hipFlex, kneeFlex, shoulderAngle, elbowBend },
+    // 0..1, only meaningful for 'reset' -- see the breathing-ring overlay.
+    breath,
   };
 }
 
@@ -322,6 +359,31 @@ function drawInteractionOverlay(ctx, state) {
 }
 
 /**
+ * Ambient breathing rings for the 2-Minute Reset demo: two concentric rings
+ * centered on the chest that expand and brighten through the 4s inhale and
+ * ease back on the 6s exhale, always playing so the widget never looks
+ * static. `boosted` (the visitor's cursor is over the canvas) widens and
+ * brightens them further -- the "hover and it ripples" moment, tied to a
+ * real breath rhythm instead of a random shimmer.
+ */
+function drawBreathRings(ctx, center, breath, boosted, unit) {
+  const boost = boosted ? 1 : 0;
+  const rings = [
+    { rBase: 0.55, rAmp: 0.35, op: 0.24 },
+    { rBase: 0.85, rAmp: 0.45, op: 0.14 },
+  ];
+  rings.forEach((ring) => {
+    const r = (ring.rBase + ring.rAmp * breath) * unit * (1 + boost * 0.16);
+    const alpha = (ring.op + boost * 0.18) * (0.45 + 0.55 * breath);
+    ctx.beginPath();
+    ctx.strokeStyle = rgba('#7fe0c8', alpha);
+    ctx.lineWidth = 1.4;
+    ctx.arc(center.x, center.y, r, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+}
+
+/**
  * Draw a pose onto a canvas 2D context. `unit` is pixels per abstract unit.
  * `origin` is the canvas-space anchor for the hip.
  */
@@ -368,7 +430,7 @@ function drawPose(ctx, pose, origin, unit, opts) {
 
   // glow
   ctx.save();
-  ctx.shadowColor = 'rgba(142,198,247,0.55)';
+  ctx.shadowColor = rgba(brand, 0.55);
   ctx.shadowBlur = 14;
   ctx.strokeStyle = brand;
   ctx.lineWidth = Math.max(3, unit * 0.055);
@@ -403,8 +465,9 @@ function drawPose(ctx, pose, origin, unit, opts) {
     if (f > 0) {
       const glowR = Math.max(6, unit * 0.09) * (1 + f * 2.2);
       const rg = ctx.createRadialGradient(j.x, j.y, 0, j.x, j.y, glowR);
-      rg.addColorStop(0, 'rgba(191,219,254,' + (0.55 * f) + ')');
-      rg.addColorStop(1, 'rgba(142,198,247,0)');
+      const hot = lighten(brand, 0.45);
+      rg.addColorStop(0, `rgba(${hot.r}, ${hot.g}, ${hot.b}, ${0.55 * f})`);
+      rg.addColorStop(1, rgba(brand, 0));
       ctx.fillStyle = rg;
       ctx.beginPath();
       ctx.arc(j.x, j.y, glowR, 0, Math.PI * 2);
@@ -637,4 +700,52 @@ function startPoseLoop(canvas, getTask, period) {
       setTask(tab.dataset.task);
     });
   });
+})();
+
+/* ---------------------------------------------------------------------- */
+/* 2-Minute Reset demo -- a calm, always-breathing loop. Hovering (or a     */
+/* finger on mobile) widens and brightens the breathing rings; clicking a  */
+/* joint still shows a real tracked angle, same as every other demo here.  */
+/* ---------------------------------------------------------------------- */
+(function resetDemo() {
+  const canvas = document.getElementById('resetCanvas');
+  if (!canvas) return;
+  const label = document.getElementById('resetBreathLabel');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+  const interaction = createPoseInteraction(canvas);
+  const period = 10; // 4s inhale + 6s exhale -- the app's real Deep Breathing step
+  let lastTs = null;
+  let lastLabel = '';
+
+  function frame(ts) {
+    const dt = lastTs == null ? 0 : Math.min((ts - lastTs) / 1000, 0.05);
+    lastTs = ts;
+    const t = (ts / 1000) % period;
+    const p = t / period;
+
+    const { cx, groundY } = drawBackdrop(ctx, w, h, t);
+    const unit = h * 0.32;
+    const pose = computePose('reset', p);
+    const origin = { x: cx, y: groundY - (SEG.thigh + SEG.shank) * unit };
+    const chestPx = { x: origin.x + pose.shoulder.x * unit, y: origin.y + pose.shoulder.y * unit };
+    const boosted = interaction.pointer.active && !REDUCE_MOTION;
+
+    drawBreathRings(ctx, chestPx, pose.breath, boosted, unit);
+    drawPose(ctx, pose, origin, unit, { interaction, brand: '#7fe0c8', brandDeep: '#2f9c80' });
+    updateInteraction(interaction, dt);
+    drawInteractionOverlay(ctx, interaction);
+
+    if (label) {
+      const nextLabel = p < 0.4 ? 'Breathe in…' : 'Breathe out…';
+      if (nextLabel !== lastLabel) {
+        label.textContent = nextLabel;
+        lastLabel = nextLabel;
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();

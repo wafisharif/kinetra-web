@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kinetra: Movement Tracker</title>
   <meta name="description"
-    content="Kinetra turns a phone camera into a movement-analysis lab: pose-tracking, rep counting, and rehab-style scoring for six clinical task types, no wearables required. Currently in private iOS beta." />
+    content="Kinetra turns a phone camera into a movement-analysis lab, plus no-camera tools like a 2-Minute Reset and daily check-ins -- for athletes, rehab, or anyone who's just curious how they move. Currently in private iOS beta." />
 
   <link rel="icon" type="image/png" href="assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,6 +62,7 @@
           </button>
           <div class="nav-dropdown-menu">
             <a href="#how">How it Works</a>
+            <a href="#reset">No Camera Needed</a>
             <a href="#insights">Daily Insights</a>
           </div>
         </div>
@@ -384,6 +385,45 @@
       </div>
     </section>
 
+    <!-- NO CAMERA NEEDED -->
+    <section id="reset">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">No Camera Needed</span>
+          <h2>Sometimes two minutes is the whole ask.</h2>
+          <p>Not every visit needs a recording or a score. The 2-Minute Reset is a guided stretch break built for
+            absolutely anyone, no camera, no analysis, nothing saved.</p>
+        </div>
+
+        <div class="task-panel reset-panel reveal">
+          <div class="task-panel-copy">
+            <span class="micro-label">2-MINUTE RESET</span>
+            <h3>Five moves, no equipment, no score.</h3>
+            <p>Neck roll, shoulder rolls, a standing side stretch, a forward fold, and a slow breath, in for a count of
+              4, out for a count of 6. That's the whole thing.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>Nothing recorded, nothing uploaded</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>No score and no streak pressure, just a break</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>One tap from the home screen, any time</li>
+            </ul>
+            <a class="btn btn-secondary" href="#status" style="margin-top:24px;">Try it in the beta</a>
+          </div>
+          <div class="task-panel-demo">
+            <canvas id="resetCanvas" width="640" height="520"
+              aria-label="Animated breathing and stretch demo, ripples respond to your cursor"
+              style="cursor:crosshair;"></canvas>
+            <div class="demo-task-label" id="resetBreathLabel" style="color:var(--accent-teal);">Breathe in&hellip;</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- DAILY INSIGHTS -->
     <section id="insights">
       <div class="wrap insights-grid">
@@ -451,24 +491,34 @@
           <span class="eyebrow">Who it's for</span>
           <h2>Built for anyone who wants a number instead of a guess.</h2>
         </div>
-        <div class="feature-list cols-4">
+        <div class="feature-list cols-6">
           <div class="feature-item reveal">
             <div class="num">01</div>
+            <h3>Just curious</h3>
+            <p>No real reason beyond wanting to know. Start with a 30-second check-in or the 2-Minute Reset, no camera required, and grow into more from there.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">02</div>
+            <h3>Posture &amp; desk life</h3>
+            <p>Stiff shoulders and a sore neck from a full day at a screen. A quick posture check or a 2-Minute Reset between meetings beats another coffee break.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">03</div>
+            <h3>Recovering from something</h3>
+            <p>Working back from an injury, surgery, or health event and want an objective number instead of guessing whether today was actually better than last week.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">04</div>
+            <h3>Checking on a family member</h3>
+            <p>Keeping an eye on an aging parent or relative's balance and mobility. Balance and Get Up &amp; Go checks say the most about everyday safety.</p>
+          </div>
+          <div class="feature-item reveal">
+            <div class="num">05</div>
             <h3>Coaches &amp; trainers</h3>
             <p>Screen a whole roster for movement quality with Team Screening, and see who needs a second look without chasing everyone down individually.</p>
           </div>
           <div class="feature-item reveal">
-            <div class="num">02</div>
-            <h3>Home rehab</h3>
-            <p>Doing guided exercises at home and want an objective number instead of guessing whether today was actually better than last week.</p>
-          </div>
-          <div class="feature-item reveal">
-            <div class="num">03</div>
-            <h3>Curious self-trackers</h3>
-            <p>Wondering whether your range of motion, balance, or day-to-day feeling is really changing week to week, beyond how any single day feels.</p>
-          </div>
-          <div class="feature-item reveal">
-            <div class="num">04</div>
+            <div class="num">06</div>
             <h3>Student-athletes &amp; teams</h3>
             <p>Track consistency across a season, build a check-in streak, and give a coach a shared view without a spreadsheet.</p>
           </div>
@@ -600,6 +650,7 @@
             <li><a href="#why">Why Kinetra</a></li>
             <li><a href="#capabilities">Capabilities</a></li>
             <li><a href="#how">How it works</a></li>
+            <li><a href="#reset">2-Minute Reset</a></li>
             <li><a href="/dashboard/">Dashboard</a></li>
           </ul>
         </div>
