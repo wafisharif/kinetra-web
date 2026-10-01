@@ -624,11 +624,23 @@
       fetchMe().then(function (data) {
         setSession(getToken(), data.user);
         paint(data.user);
-      }).catch(function () {
-        clearSession();
-        dashView.style.display = "none";
-        authView.style.display = "";
-        setTab("signin");
+      }).catch(function (err) {
+        // Only a real auth failure (expired/invalid token, deleted account --
+        // the backend answers those with 401) should sign the user out here.
+        // A network hiccup or the backend waking up from an idle Render
+        // instance (see REQUEST_TIMEOUT_MS above) throws an error with no
+        // .status, and must NOT sign anyone out -- that would boot a
+        // perfectly valid session back to the sign-in screen just because
+        // the free tier happened to be asleep, which defeats the point of
+        // signing in from a second device and expecting it to stay signed in.
+        if (err && err.status === 401) {
+          clearSession();
+          dashView.style.display = "none";
+          authView.style.display = "";
+          setTab("signin");
+        }
+        // Otherwise: keep the cached dashboard already painted above. The
+        // next successful /auth/me or /sync call refreshes it.
       });
     }
 

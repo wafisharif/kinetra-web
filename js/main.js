@@ -411,7 +411,14 @@ function drawPose(ctx, pose, origin, unit, opts) {
   if (interaction && interaction.pointer.active && !REDUCE_MOTION) {
     const radius = unit * 0.5;
     const pointer = interaction.pointer;
-    const named = { hip, shoulder, neckTop, head, elbow, wrist, knee, ankle };
+    // neckTop and head are deliberately NOT in this generic set: the head
+    // circle sits at a fixed, rigid offset from neckTop (see computePose's
+    // `head = extendAngle(neckTop, SEG.headR, ...)`), so perturbing them as
+    // two independent points -- each nudged by its own distance-to-pointer --
+    // let them drift apart by different amounts and visibly pop the head off
+    // the end of the neck bone when the cursor passed near it. They're
+    // handled as one rigid unit right after this loop instead.
+    const named = { hip, shoulder, elbow, wrist, knee, ankle };
     for (const name in named) {
       const j = named[name];
       const d = Math.hypot(j.x - pointer.x, j.y - pointer.y);
@@ -422,6 +429,21 @@ function drawPose(ctx, pose, origin, unit, opts) {
         j.y += Math.sin(ang) * f * unit * 0.09;
         near[name] = f;
       }
+    }
+
+    // Head + top-of-neck as a single rigid unit: one distance check (from
+    // the head, since that's the big, obvious hover target), one shared
+    // displacement vector applied to both points so the head never
+    // separates from the neck bone it's attached to.
+    const headD = Math.hypot(head.x - pointer.x, head.y - pointer.y);
+    if (headD < radius && headD > 0.001) {
+      const f = 1 - headD / radius;
+      const ang = Math.atan2(head.y - pointer.y, head.x - pointer.x);
+      const dx = Math.cos(ang) * f * unit * 0.09;
+      const dy = Math.sin(ang) * f * unit * 0.09;
+      head.x += dx; head.y += dy;
+      neckTop.x += dx; neckTop.y += dy;
+      near.head = f;
     }
   }
 
