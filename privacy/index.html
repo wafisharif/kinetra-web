@@ -110,7 +110,7 @@
 
     <h2 id="video">1. Video and camera data</h2>
     <p>When you record a movement check, the video is uploaded to Kinetra's analysis
-    backend over HTTPS for the sole purpose of running pose estimation and computing
+    server over HTTPS for the sole purpose of running pose estimation and computing
     your result.</p>
     <ul>
       <li>The video file is deleted from the server's disk immediately after processing completes, whether the analysis succeeds or fails.</li>
@@ -129,17 +129,17 @@
     <p>None of this is backed up automatically. The app itself still has no account system, so if you delete the app or clear its data, this information is gone and Kinetra cannot recover it for you.</p>
 
     <h2 id="checkins">3. Daily Check-Ins &amp; Insights</h2>
-    <p>Kinetra's optional Daily Check-In lets you log a general feeling rating (1&ndash;5) and any sore areas, without recording video. This is stored only in the app's local storage on your device, exactly like the session results above. It is never uploaded, never transmitted to Kinetra's backend, and never sent to any third party.</p>
+    <p>Kinetra's optional Daily Check-In lets you log a general feeling rating (1&ndash;5) and any sore areas, without recording video. This is stored only in the app's local storage on your device, exactly like the session results above. It is never uploaded, never transmitted to Kinetra's server, and never sent to any third party.</p>
     <p>The Insights screen compares your Daily Check-Ins against your recorded session scores (streaks, soreness-vs-score correlation, left/right asymmetry) entirely on your device. Nothing about this computation leaves your phone.</p>
 
     <h2 id="dashboard-accounts">4. Web dashboard accounts</h2>
-    <p>The browser dashboard at kinetraapp.com/dashboard is separate from the mobile app and is the one part of Kinetra with an account system. Creating an account there means giving a name, an email address, and a password, all sent to Kinetra's backend server over HTTPS. Your password is hashed before it's ever stored, so Kinetra itself cannot see or recover your plain password.</p>
-    <p>By default, your dashboard account and the app's on-device data are not connected -- the app has no account system of its own, and everything it records stays on your device (see above). If you turn on Web Dashboard Sync from the app's Settings screen and sign in there with the same dashboard account, the app sends a copy of your sessions, check-ins, and calibration to Kinetra's backend so the dashboard can show them. Turning that off, or never turning it on, means nothing ever leaves your device this way.</p>
+    <p>The browser dashboard at kinetraapp.com/dashboard is separate from the mobile app and is the one part of Kinetra with an account system. Creating an account there means giving a name, an email address, and a password, all sent to Kinetra's server over HTTPS. Your password is hashed before it's ever stored, so Kinetra itself cannot see or recover your plain password.</p>
+    <p>By default, your dashboard account and the app's on-device data are not connected -- the app has no account system of its own, and everything it records stays on your device (see above). If you turn on Web Dashboard Sync from the app's Settings screen and sign in there with the same dashboard account, the app sends a copy of your sessions, check-ins, and calibration to Kinetra's server so the dashboard can show them. Turning that off, or never turning it on, means nothing ever leaves your device this way.</p>
     <p>You can have your dashboard account and its data deleted at any time by emailing the contact below.</p>
 
     <h2 id="aicoach">5. AI Coach (optional, off unless configured)</h2>
     <p>If enabled, tapping "Ask AI for a Personal Note" sends the following to a third-party AI service, and nothing else: the task name, your most recent numeric score, letter grade, and confidence grade; which side you recorded; whether you've calibrated; and up to your last several numeric scores for that same task, for trend context.</p>
-    <p>It never sends: video, raw pose/joint position data, or any personal identifier beyond a task label you may have typed in yourself. This request goes through Kinetra's own backend server, which holds the API credential, so your phone never does. This feature is opt-in per use and fails closed: if the feature has not been configured, tapping the button tells you so and sends nothing anywhere.</p>
+    <p>It never sends: video, raw pose/joint position data, or any personal identifier beyond a task label you may have typed in yourself. This request goes through Kinetra's own server, which holds the access key the AI service needs, so your phone never does. This feature is opt-in per use, and if it hasn't been set up yet, tapping the button just tells you so and sends nothing anywhere.</p>
 
     <h2 id="limits">6. Known accuracy limitations</h2>
     <p>Because this affects what "your data" actually represents: a single 2D camera cannot fully resolve depth, so movement directly toward or away from the camera is measured less reliably than side-to-side movement. Poor lighting, loose clothing, or a joint leaving the frame all reduce tracking accuracy. Kinetra has not been independently validated against a clinical, marker-based motion-capture system.</p>
