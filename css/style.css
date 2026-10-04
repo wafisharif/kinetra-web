@@ -33,21 +33,33 @@
   --accent-amber: #f5c97b;
   --accent-coral: #ff9d9d;
 
-  /* ---- type ---- */
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-body: "Urbanist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  /* ---- type ----
+     Fraunces for display: a warm, characterful serif with real ink-trap
+     personality (not the Instrument-Serif-italic-accent-word look that's
+     become the default "generated startup site" formula). Hanken Grotesk
+     for body/UI text in place of a generic grotesk. No separate monospace
+     family: labels, tags, and numbers that used to borrow a "techy" mono
+     typeface for texture now just use the body font with real weight and
+     tracking -- a monospace face belongs to literal code, not to a rehab
+     app's section labels. */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  --fs-eyebrow: 11px;
-  --fs-micro: 10px;
-  --tracking-eyebrow: 0.14em;
-  --tracking-micro: 0.12em;
+  --fs-eyebrow: 12.5px;
+  --fs-micro: 11px;
+  --tracking-eyebrow: 0.07em;
+  --tracking-micro: 0.05em;
 
   --fs-cta: clamp(40px, 6vw, 84px);
   --fs-section: clamp(32px, 5vw, 60px);
   --fs-subheading: clamp(22px, 2.6vw, 34px);
 
-  /* ---- shape / layout ---- */
+  /* ---- shape / layout ----
+     One restrained radius scale used everywhere instead of defaulting to
+     a full 999px capsule for every button, tag, and badge -- the single
+     most recognizable "generated SaaS template" shape. Pills are kept only
+     for the couple of places a true pill/segmented-control reads better
+     (see --radius-pill's remaining uses). */
   --radius-control: 10px;
   --radius-card: 14px;
   --radius-card-lg: 24px;
@@ -124,27 +136,18 @@ p {
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: var(--fs-eyebrow);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--brand);
 }
 
-.eyebrow::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 12px 2px var(--brand-glow);
-}
-
 .micro-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: var(--fs-micro);
   letter-spacing: var(--tracking-micro);
   text-transform: uppercase;
@@ -235,10 +238,8 @@ html.js-reveal .reveal.is-visible {
 
 .banner strong {
   color: var(--brand);
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  font-size: 13px;
 }
 
 .banner a {
@@ -273,10 +274,10 @@ html.js-reveal .reveal.is-visible {
   align-items: center;
   gap: 10px;
   color: var(--ink-strong);
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
 }
 
 .nav-brand svg {
@@ -422,23 +423,23 @@ html.js-reveal .reveal.is-visible {
   gap: 8px;
   height: 40px;
   padding-inline: 20px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   border: 1px solid transparent;
   white-space: nowrap;
-  transition: filter 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: filter 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #f0f8ff 0%, var(--brand) 55%, var(--brand-deep) 100%);
-  color: #07131e;
-  box-shadow: 0 1px 2px rgba(28, 95, 168, 0.25), 0 8px 20px -8px rgba(28, 95, 168, 0.55);
+  background: var(--brand-strong);
+  color: #051324;
 }
 
 .btn-primary:hover {
-  filter: brightness(1.05);
+  background: var(--brand);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -474,14 +475,6 @@ html.js-reveal .reveal.is-visible {
   overflow: hidden;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -20% -10% auto -10%;
-  height: 640px;
-  background: radial-gradient(60% 60% at 30% 20%, var(--brand-glow), transparent 70%);
-  pointer-events: none;
-}
 
 .hero-grid {
   display: grid;
@@ -516,8 +509,7 @@ html.js-reveal .reveal.is-visible {
 
 .hero-note {
   margin-top: 22px;
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-faint);
   display: flex;
   align-items: center;
@@ -547,31 +539,15 @@ html.js-reveal .reveal.is-visible {
   margin-bottom: 14px;
 }
 
-.demo-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.demo-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--line-strong);
-}
-
 .demo-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-faint);
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  color: var(--ink-muted);
 }
 
 .demo-stage {
   position: relative;
   border-radius: var(--radius-card);
-  background:
-    radial-gradient(120% 100% at 50% 0%, rgba(142, 198, 247, 0.12), transparent 60%),
-    var(--surface-2);
+  background: var(--surface-2);
   border: 1px solid var(--line-soft);
   aspect-ratio: 4 / 3.1;
   overflow: hidden;
@@ -601,16 +577,16 @@ html.js-reveal .reveal.is-visible {
 }
 
 .metric-chip .k {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
 .metric-chip .v {
-  font-family: var(--font-mono);
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 700;
   color: var(--ink-strong);
   margin-top: 2px;
   font-variant-numeric: tabular-nums;
@@ -627,62 +603,52 @@ html.js-reveal .reveal.is-visible {
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(6px);
   border: 1px solid var(--line-soft);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   padding: 5px 12px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   color: var(--brand);
   text-transform: uppercase;
 }
 
 /* ==========================================================================
-   Marquee
+   Compatibility row (was an auto-scrolling marquee -- a static wrapped row
+   reads as a plain fact about the app rather than a borrowed "logo ticker"
+   template piece, and it doesn't fight the reader's eye while they're
+   still reading the hero above it)
    ========================================================================== */
-.marquee-wrap {
+.compat-wrap {
   border-top: 1px solid var(--line-soft);
   border-bottom: 1px solid var(--line-soft);
-  padding-block: 26px;
-  overflow: hidden;
+  padding-block: 22px;
   background: var(--surface-1);
 }
 
-.marquee-label {
+.compat-label {
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.marquee-track {
+.compat-row {
   display: flex;
-  width: max-content;
-  gap: 64px;
-  animation: marquee 26s linear infinite;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 36px;
 }
 
-.marquee-track span {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--ink-faint);
+.compat-row span {
+  font-size: 13.5px;
+  color: var(--ink-muted);
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.marquee-track span b {
-  color: var(--ink-muted);
-  font-weight: 600;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+.compat-row span b {
+  color: var(--ink-strong);
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -704,8 +670,9 @@ html.js-reveal .reveal.is-visible {
 }
 
 .feature-item .num {
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-style: italic;
   color: var(--brand);
 }
 
@@ -823,9 +790,7 @@ html.js-reveal .reveal.is-visible {
    above) but leans teal instead of brand blue, so it reads as the calmer,
    no-camera counterpart rather than another clinical measurement. */
 .reset-panel .task-panel-demo {
-  background:
-    radial-gradient(120% 100% at 50% 0%, rgba(127, 224, 200, 0.14), transparent 60%),
-    var(--surface-2);
+  background: var(--surface-2);
 }
 
 /* Carries the teal identity up into the section head too, so the whole
@@ -834,11 +799,6 @@ html.js-reveal .reveal.is-visible {
    canvas in main.js -- same color, two places it needs to exist. */
 #reset .eyebrow {
   color: var(--accent-teal);
-}
-
-#reset .eyebrow::before {
-  background: var(--accent-teal);
-  box-shadow: 0 0 12px 2px rgba(127, 224, 200, 0.32);
 }
 
 #reset .task-panel-copy li svg {
@@ -868,9 +828,9 @@ html.js-reveal .reveal.is-visible {
 }
 
 .product-card .tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--brand);
 }
@@ -901,11 +861,10 @@ html.js-reveal .reveal.is-visible {
   align-items: center;
   gap: 6px;
   padding: 7px 14px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   border: 1px solid var(--line-soft);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: 12.5px;
+  font-weight: 600;
   color: var(--ink-muted);
 }
 
@@ -980,10 +939,10 @@ html.js-reveal .reveal.is-visible {
 }
 
 .step-list .step-k {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
   color: var(--brand);
-  letter-spacing: 0.04em;
 }
 
 .step-list .step-t {
@@ -1075,9 +1034,9 @@ html.js-reveal .reveal.is-visible {
 
 .stat .label {
   margin-top: 4px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
@@ -1091,10 +1050,10 @@ html.js-reveal .reveal.is-visible {
 }
 
 .insight-preview-card .tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 700;
   color: var(--accent-violet);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -1111,7 +1070,7 @@ html.js-reveal .reveal.is-visible {
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-card-lg);
   padding: 56px;
-  background: radial-gradient(80% 120% at 15% 0%, var(--brand-glow), transparent 60%), var(--surface-1);
+  background: var(--surface-1);
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 40px;
@@ -1144,10 +1103,10 @@ html.js-reveal .reveal.is-visible {
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   border: 1px solid var(--line-strong);
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--ink-strong);
   align-self: flex-start;
 }
@@ -1226,13 +1185,12 @@ html.js-reveal .reveal.is-visible {
 
 .roadmap-tag {
   white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   padding: 6px 13px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   border: 1px solid var(--line-soft);
   height: fit-content;
   margin-top: 2px;
@@ -1286,9 +1244,9 @@ html.js-reveal .reveal.is-visible {
   align-items: center;
   gap: 10px;
   color: var(--ink-strong);
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 15px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .footer-brand svg {
@@ -1304,9 +1262,9 @@ html.js-reveal .reveal.is-visible {
 }
 
 .footer-col h5 {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink-faint);
   margin-bottom: 14px;

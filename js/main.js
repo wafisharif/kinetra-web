@@ -338,7 +338,7 @@ function drawInteractionOverlay(ctx, state) {
   if (state.readout) {
     const ro = state.readout;
     ctx.globalAlpha = Math.min(ro.life, 1);
-    ctx.font = "600 13px 'JetBrains Mono', monospace";
+    ctx.font = "700 13px 'Hanken Grotesk', -apple-system, sans-serif";
     const padX = 10, padY = 7;
     const tw = ctx.measureText(ro.text).width;
     const bx = ro.x + 14, by = ro.y - 14 - 26;

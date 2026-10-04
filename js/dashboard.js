@@ -540,7 +540,7 @@
       heading.textContent = signingIn ? "Sign in to Kinetra" : "Create your Kinetra account";
       subtext.textContent = signingIn
         ? "Sign in to see your dashboard. New here? Create an account instead."
-        : "Sign up with your email and a password. Your password is hashed before it's stored.";
+        : "Sign up with your email and a password.";
     }
     if (tabSignIn && tabSignUp) {
       tabSignIn.addEventListener("click", function () { setTab("signin"); });
