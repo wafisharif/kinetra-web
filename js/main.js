@@ -161,13 +161,13 @@ function computePose(task, p) {
     case 'gait': {
       const w = 2 * Math.PI * p;
       hipFlex = 0.55 * Math.sin(w);
-      kneeFlex = 0.5 + 0.5 * Math.sin(w - 1.1);
+      kneeFlex = 0.6 + 0.6 * Math.sin(w - 1.1);
       if (kneeFlex < 0) kneeFlex = 0;
       // Back leg: identical formula, half a stride (π) out of phase, so
       // the two legs alternate the way they actually do when walking.
       const w2 = w + Math.PI;
       hipFlex2 = 0.55 * Math.sin(w2);
-      kneeFlex2 = 0.5 + 0.5 * Math.sin(w2 - 1.1);
+      kneeFlex2 = 0.6 + 0.6 * Math.sin(w2 - 1.1);
       if (kneeFlex2 < 0) kneeFlex2 = 0;
       shoulderAngle = -0.5 * Math.sin(w); // opposite-arm swing
       elbowBend = 0.5 + 0.25 * Math.sin(w);
@@ -198,12 +198,12 @@ function computePose(task, p) {
       } else if (p < 0.75) {
         const w = 2 * Math.PI * ((p - 0.35) / 0.4) * 3;
         hipFlex = 0.5 * Math.sin(w);
-        kneeFlex = Math.max(0, 0.5 + 0.5 * Math.sin(w - 1.1));
+        kneeFlex = Math.max(0, 0.6 + 0.6 * Math.sin(w - 1.1));
         // Same half-stride-offset back leg as the 'gait' case, for the
         // walking portion of Timed Up and Go.
         const w2 = w + Math.PI;
         hipFlex2 = 0.5 * Math.sin(w2);
-        kneeFlex2 = Math.max(0, 0.5 + 0.5 * Math.sin(w2 - 1.1));
+        kneeFlex2 = Math.max(0, 0.6 + 0.6 * Math.sin(w2 - 1.1));
         shoulderAngle = -0.5 * Math.sin(w);
         elbowBend = 0.5 + 0.25 * Math.sin(w);
         hipShift.y = 0.05 * Math.abs(Math.sin(w));
