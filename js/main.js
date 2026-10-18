@@ -122,13 +122,17 @@ function computePose(task, p) {
   let breath = 0; // 0..1, only set by 'reset' below; drives the breathing-ring overlay
 
   // hipFlex2/kneeFlex2 drive a second ("back") leg -- the one that would
-  // be farther from the camera in a real side-on view. Left undefined
-  // here and filled in below: only the walking cases ('gait' and tug's
-  // walk segment) give it its own half-cycle-offset phase so it reads as
-  // an alternating stride; every other task falls back to matching the
-  // front leg exactly (see the undefined check right after this switch).
+  // be farther from the camera in a real side-on view. shoulderAngle2/
+  // elbowBend2 do the same for a second ("far") arm. All four are left
+  // undefined here and filled in below: only the walking cases ('gait'
+  // and tug's walk segment) give them their own half-cycle-offset phase
+  // so the limbs read as alternating strides/arm swings; every other
+  // task falls back to matching the near limb exactly (see the undefined
+  // check right after this switch).
   let hipFlex2;
   let kneeFlex2;
+  let shoulderAngle2;
+  let elbowBend2;
 
   switch (task) {
     case 'sit-to-stand': {
@@ -173,6 +177,11 @@ function computePose(task, p) {
       kneeFlex2 = 0.12 + 1.3 * Math.pow(Math.max(0, Math.cos(w2 - 1.1)), 3);
       shoulderAngle = -0.8 * Math.sin(w); // opposite-arm swing
       elbowBend = 0.5 + 0.4 * Math.sin(w);
+      // Far arm: same half-stride offset as the back leg, so it swings
+      // opposite the near arm -- the way a real walker's two arms
+      // alternate with each other (and with the opposite-side leg).
+      shoulderAngle2 = -0.8 * Math.sin(w2);
+      elbowBend2 = 0.5 + 0.4 * Math.sin(w2);
       hipShift.y = 0.05 * Math.abs(Math.sin(w));
       torsoLean = 0.05;
       break;
@@ -209,6 +218,9 @@ function computePose(task, p) {
         kneeFlex2 = 0.12 + 1.3 * Math.pow(Math.max(0, Math.cos(w2 - 1.1)), 3);
         shoulderAngle = -0.8 * Math.sin(w);
         elbowBend = 0.5 + 0.4 * Math.sin(w);
+        // Same far-arm offset as the 'gait' case.
+        shoulderAngle2 = -0.8 * Math.sin(w2);
+        elbowBend2 = 0.5 + 0.4 * Math.sin(w2);
         hipShift.y = 0.05 * Math.abs(Math.sin(w));
         torsoLean = 0.05;
       } else {
@@ -239,11 +251,14 @@ function computePose(task, p) {
       break;
   }
 
-  // Tasks that didn't set their own back-leg phase above (every task
-  // except the walking ones) keep both legs together, matching the front
-  // leg exactly -- correct for standing, sitting, reaching, etc.
+  // Tasks that didn't set their own back-leg/far-arm phase above (every
+  // task except the walking ones) keep both legs and both arms together,
+  // matching the near limb exactly -- correct for standing, sitting,
+  // reaching, etc.
   if (hipFlex2 === undefined) hipFlex2 = hipFlex;
   if (kneeFlex2 === undefined) kneeFlex2 = kneeFlex;
+  if (shoulderAngle2 === undefined) shoulderAngle2 = shoulderAngle;
+  if (elbowBend2 === undefined) elbowBend2 = elbowBend;
 
   const hip = { x: hipShift.x, y: hipShift.y };
   const shoulder = extendAngle(hip, SEG.torso, Math.PI - torsoLean);
@@ -256,9 +271,12 @@ function computePose(task, p) {
   // Back leg -- same hip anchor, its own (usually matching) flex values.
   const knee2 = extendAngle(hip, SEG.thigh, hipFlex2);
   const ankle2 = extendAngle(knee2, SEG.shank, hipFlex2 - kneeFlex2);
+  // Far arm -- same shoulder anchor, its own (usually matching) swing.
+  const elbow2 = extendAngle(shoulder, SEG.upperArm, shoulderAngle2);
+  const wrist2 = extendAngle(elbow2, SEG.forearm, shoulderAngle2 - elbowBend2);
 
   return {
-    hip, shoulder, neckTop, head, elbow, wrist, knee, ankle, knee2, ankle2, headR: SEG.headR,
+    hip, shoulder, neckTop, head, elbow, wrist, knee, ankle, knee2, ankle2, elbow2, wrist2, headR: SEG.headR,
     // raw joint-angle inputs, in radians -- surfaced so the interactive
     // layer below can show a real reading (e.g. "Knee flexion: 92°")
     // instead of a made-up number.
@@ -435,6 +453,8 @@ function drawPose(ctx, pose, origin, unit, opts) {
   let ankle = toPx(pose.ankle);
   let knee2 = toPx(pose.knee2);
   let ankle2 = toPx(pose.ankle2);
+  let elbow2 = toPx(pose.elbow2);
+  let wrist2 = toPx(pose.wrist2);
   const headR = pose.headR * unit;
 
   // Cursor-reactive spring displacement: a joint near the pointer nudges
@@ -484,16 +504,16 @@ function drawPose(ctx, pose, origin, unit, opts) {
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
 
-  // Back leg -- the one a real side-on camera would see partly behind the
-  // front leg. Drawn first, dimmer and without the glow below, so the
-  // torso/front leg render on top of it; during a walk cycle its flex
-  // values differ from the front leg's (see computePose) so it swings
-  // visibly on its own instead of just sitting hidden behind the front
-  // leg the whole time.
+  // Far leg and far arm -- the limbs a real side-on camera would see
+  // partly behind the near ones. Drawn first, dimmer and without the glow
+  // below, so the torso/near limbs render on top of them; during a walk
+  // cycle their flex/swing values differ from the near limbs' (see
+  // computePose) so they move visibly on their own instead of just
+  // sitting hidden behind the near limbs the whole time.
   ctx.save();
   ctx.strokeStyle = rgba(brand, 0.4);
   ctx.lineWidth = Math.max(3, unit * 0.055);
-  [[hip, knee2], [knee2, ankle2]].forEach(([a, b]) => {
+  [[hip, knee2], [knee2, ankle2], [shoulder, elbow2], [elbow2, wrist2]].forEach(([a, b]) => {
     ctx.beginPath();
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
