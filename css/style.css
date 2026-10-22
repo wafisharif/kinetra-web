@@ -168,7 +168,8 @@ section.tight {
   margin-bottom: 56px;
 }
 
-.section-head h2 {
+.section-head h2,
+.section-head h1 {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: var(--fs-section);
