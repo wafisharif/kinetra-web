@@ -1227,6 +1227,69 @@ html.js-reveal .reveal.is-visible {
 }
 
 /* ==========================================================================
+   Latest Updates (a real, dated changelog -- not a vanity metric)
+   ========================================================================== */
+.updates-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 22px 0 22px 28px;
+  border-left: 1px solid var(--line-soft);
+}
+
+.update-row:first-child {
+  padding-top: 2px;
+}
+
+.update-row:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+.update-dot {
+  position: absolute;
+  left: -5px;
+  top: 26px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 4px var(--surface-base);
+}
+
+.update-row:first-child .update-dot {
+  top: 6px;
+}
+
+.update-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+  padding-top: 2px;
+  white-space: nowrap;
+}
+
+.update-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-strong);
+  margin-bottom: 6px;
+}
+
+.update-desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  max-width: 560px;
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .site-footer {
@@ -1371,6 +1434,11 @@ html.js-reveal .reveal.is-visible {
 
   .roadmap-tag {
     margin-top: 0;
+  }
+
+  .update-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }
 
