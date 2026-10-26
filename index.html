@@ -79,6 +79,7 @@
             <a href="#tasks">Task Coverage</a>
             <a href="#product">Product</a>
             <a href="#capabilities">Capabilities</a>
+            <a href="#proof">Built in the Open</a>
           </div>
         </div>
         <div class="nav-dropdown">
@@ -154,6 +155,22 @@
             </svg>
             Video is analyzed and discarded. Nothing is uploaded to train a model.
           </div>
+
+          <div class="hero-signup" id="heroSignup">
+            <div class="hero-signup-head">
+              <strong>Try Kinetra free</strong>
+              <span>Real account, no credit card, takes 10 seconds.</span>
+            </div>
+            <form id="hs-form" class="hero-signup-form">
+              <input id="hs-name" type="text" autocomplete="name" placeholder="Your name" aria-label="Name" required />
+              <input id="hs-email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email" required />
+              <input id="hs-password" type="password" autocomplete="new-password" placeholder="Create a password (8+ characters)" aria-label="Password" required />
+              <button type="submit" class="btn btn-primary" id="hs-submit">Create free account</button>
+            </form>
+            <div class="hero-signup-error" id="hs-error"></div>
+            <div class="hero-signup-success" id="hs-success"></div>
+            <div class="hero-signup-note" id="hs-note">Already have an account? <a href="/dashboard/" class="inline-link">Sign in</a></div>
+          </div>
         </div>
 
         <div class="demo-panel reveal">
@@ -194,6 +211,45 @@
         <span>Works indoors &amp; outdoors</span>
       </div>
     </div>
+
+    <!-- PROOF -->
+    <section id="proof" class="tight">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Built in the Open</span>
+          <h2>Proof instead of promises.</h2>
+          <p>There's no user base yet to put in a testimonial, so instead of one, here's what you can go check yourself.</p>
+        </div>
+        <div class="proof-grid">
+          <div class="product-card reveal">
+            <span class="tag">Open source</span>
+            <h3>Every line, public</h3>
+            <p>The app and the analysis backend are both on GitHub -- not a marketing repo, the actual code running in production right now.</p>
+            <div class="proof-card-meta">
+              <div class="proof-stat"><strong id="ghCommits">&mdash;</strong>commits</div>
+              <div class="proof-stat"><strong id="ghStars">&mdash;</strong>stars</div>
+              <div class="proof-stat"><strong id="ghUpdated">&mdash;</strong>last push</div>
+            </div>
+            <a class="btn btn-secondary" href="https://github.com/wafisharif/kinetra" target="_blank" rel="noopener" style="margin-top:18px;">View the repo</a>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">Tested, not just shipped</span>
+            <h3>Automated tests before every merge</h3>
+            <p>The scoring backend runs a pytest suite, and the app is checked with end-to-end tests that click through its real screens, before any change goes out -- not just a manual once-over.</p>
+            <a class="btn btn-secondary" href="https://github.com/wafisharif/kinetra/actions" target="_blank" rel="noopener" style="margin-top:18px;">See CI runs</a>
+          </div>
+          <div class="product-card reveal">
+            <span class="tag">Honest about limits</span>
+            <h3>The app tells on itself</h3>
+            <p>Every build ships with a Transparency page that plainly states what's measured and where a single camera falls short. Word for word, from that page:</p>
+            <blockquote class="proof-quote">
+              &ldquo;A single 2D camera cannot fully resolve depth, so movement directly toward or away from the camera is measured less reliably than side-to-side movement.&rdquo;
+              <cite>&mdash; Kinetra app, Transparency page</cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- WHY KINETRA -->
     <section id="why">
@@ -782,6 +838,7 @@
 
   <script src="js/nav.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/home-signup.js"></script>
 </body>
 
 </html>

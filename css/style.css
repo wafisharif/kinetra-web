@@ -614,6 +614,149 @@ html.js-reveal .reveal.is-visible {
 }
 
 /* ==========================================================================
+   Hero sign-up card -- a real account-creation form, front and center in
+   the hero rather than tucked behind the "Sign in" nav link. Posts straight
+   to the same backend and localStorage keys the dashboard page uses (see
+   js/home-signup.js), so finishing it here drops you into an already
+   signed-in dashboard, no second login required.
+   ========================================================================== */
+.hero-signup {
+  margin-top: 30px;
+  max-width: 420px;
+  background: var(--surface-1);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card-lg);
+  padding: 22px 24px;
+}
+
+.hero-signup-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.hero-signup-head strong {
+  font-size: 15px;
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+
+.hero-signup-head span {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.hero-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-signup-form input {
+  box-sizing: border-box;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-control);
+  padding: 11px 13px;
+  color: var(--ink-strong);
+  font-size: 14.5px;
+  font-family: var(--font-body);
+}
+
+.hero-signup-form input:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.hero-signup-form .btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.hero-signup-form .btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.hero-signup-error,
+.hero-signup-success {
+  display: none;
+  margin-top: 12px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.hero-signup-error {
+  color: #fca5a5;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.hero-signup-success {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.hero-signup-note {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Proof / "built in the open" section (reuses .product-card)
+   ========================================================================== */
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.proof-card-meta {
+  margin-top: 16px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.proof-stat {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.proof-stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.proof-quote {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border-left: 2px solid var(--brand);
+  border-radius: 0 10px 10px 0;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--ink-body);
+}
+
+.proof-quote cite {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
    Compatibility row (was an auto-scrolling marquee -- a static wrapped row
    reads as a plain fact about the app rather than a borrowed "logo ticker"
    template piece, and it doesn't fight the reader's eye while they're
@@ -1383,6 +1526,10 @@ html.js-reveal .reveal.is-visible {
   }
 
   .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-grid {
     grid-template-columns: 1fr;
   }
 

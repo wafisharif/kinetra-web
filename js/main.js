@@ -842,3 +842,49 @@ function startPoseLoop(canvas, getTask, period) {
   }
   requestAnimationFrame(frame);
 })();
+
+/* ---------------------------------------------------------------------- */
+/* Live GitHub stats for the "Built in the Open" proof section. Fetched    */
+/* straight from the public GitHub API at load time -- real numbers, never */
+/* typed in here, so they can't go stale or be made up. If the fetch fails */
+/* (offline, rate-limited) the stat just keeps its placeholder dash rather */
+/* than showing a wrong number.                                            */
+/* ---------------------------------------------------------------------- */
+(function githubProof() {
+  const commitsEl = document.getElementById('ghCommits');
+  const starsEl = document.getElementById('ghStars');
+  const updatedEl = document.getElementById('ghUpdated');
+  if (!commitsEl || !starsEl || !updatedEl) return;
+
+  function timeAgo(iso) {
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const days = Math.floor(diffMs / 86400000);
+    if (days <= 0) return 'today';
+    if (days === 1) return '1 day ago';
+    if (days < 30) return days + ' days ago';
+    const months = Math.floor(days / 30);
+    if (months < 12) return months + (months === 1 ? ' month ago' : ' months ago');
+    const years = Math.floor(months / 12);
+    return years + (years === 1 ? ' year ago' : ' years ago');
+  }
+
+  fetch('https://api.github.com/repos/wafisharif/kinetra')
+    .then((res) => (res.ok ? res.json() : Promise.reject(new Error('not ok'))))
+    .then((repo) => {
+      starsEl.textContent = repo.stargazers_count;
+      updatedEl.textContent = timeAgo(repo.pushed_at);
+    })
+    .catch(() => { /* leave the dash -- no fake number ever fills in */ });
+
+  // GitHub's REST API doesn't return a total commit count directly, but
+  // asking for one commit per page and reading the last-page number off
+  // the pagination Link header does, without walking every commit.
+  fetch('https://api.github.com/repos/wafisharif/kinetra/commits?per_page=1')
+    .then((res) => {
+      if (!res.ok) return;
+      const link = res.headers.get('link');
+      const match = link && link.match(/[?&]page=(\d+)>;\s*rel="last"/);
+      if (match) commitsEl.textContent = match[1];
+    })
+    .catch(() => {});
+})();
