@@ -219,14 +219,14 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">Built in the Open</span>
-          <h2>Proof instead of promises.</h2>
-          <p>There's no user base yet to put in a testimonial, so instead of one, here's what you can go check yourself.</p>
+          <h2>Verification instead of testimonials.</h2>
+          <p>There is no user base yet to cite as a testimonial. The following is independently verifiable instead.</p>
         </div>
         <div class="proof-grid">
           <div class="product-card reveal">
             <span class="tag">Open source</span>
-            <h3>Every line, public</h3>
-            <p>The app and the analysis backend are both on GitHub -- not a marketing repo, the actual code running in production right now.</p>
+            <h3>The complete source is public</h3>
+            <p>The app and the analysis backend are both published on GitHub. This is not a separate marketing repository; it is the code currently running in production.</p>
             <div class="proof-card-meta">
               <div class="proof-stat"><strong id="ghCommits">&mdash;</strong>commits</div>
               <div class="proof-stat"><strong id="ghStars">&mdash;</strong>stars</div>
@@ -235,15 +235,15 @@
             <a class="btn btn-secondary" href="https://github.com/wafisharif/kinetra" target="_blank" rel="noopener" style="margin-top:18px;">View the repo</a>
           </div>
           <div class="product-card reveal">
-            <span class="tag">Tested, not just shipped</span>
+            <span class="tag">Automated testing</span>
             <h3>Automated tests before every merge</h3>
-            <p>The scoring backend runs a pytest suite, and the app is checked with end-to-end tests that click through its real screens, before any change goes out -- not just a manual once-over.</p>
+            <p>The scoring backend runs a pytest suite, and the app is checked with end-to-end tests that exercise its real screens before any change is released, rather than relying on manual review alone.</p>
             <a class="btn btn-secondary" href="https://github.com/wafisharif/kinetra/actions" target="_blank" rel="noopener" style="margin-top:18px;">See CI runs</a>
           </div>
           <div class="product-card reveal">
-            <span class="tag">Honest about limits</span>
-            <h3>The app tells on itself</h3>
-            <p>Every build ships with a Transparency page that plainly states what's measured and where a single camera falls short. Word for word, from that page:</p>
+            <span class="tag">Stated limitations</span>
+            <h3>The app states its own limitations</h3>
+            <p>Every build includes a Transparency page that states plainly what is measured and where a single camera falls short. The following is quoted directly from that page:</p>
             <blockquote class="proof-quote">
               &ldquo;A single 2D camera cannot fully resolve depth, so movement directly toward or away from the camera is measured less reliably than side-to-side movement.&rdquo;
               <cite>&mdash; Kinetra app, Transparency page</cite>
@@ -258,26 +258,24 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">Why Kinetra</span>
-          <h2>Where generic fitness apps stop.</h2>
-          <p>Rep-counters tell you what you did. Kinetra tells you how well you did it, and whether that's changing over
-            time.</p>
+          <h2>Beyond what a typical fitness app measures.</h2>
+          <p>A rep counter records what you did. Kinetra measures how well you did it, and whether that is changing over time.</p>
         </div>
         <div class="feature-list">
           <div class="feature-item reveal">
             <div class="num">01</div>
             <h3>Camera-only pose tracking</h3>
-            <p>MediaPipe-based pose estimation runs on a normal video recording. No wearables, no special hardware needed.</p>
+            <p>MediaPipe-based pose estimation runs on a standard video recording. No wearables or specialized hardware are required.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">02</div>
             <h3>Per-limb calibration</h3>
-            <p>A one-time calibration flow learns your own observed range of motion per arm, so rep-detection thresholds come from that instead of a generic default.</p>
+            <p>A one-time calibration flow records your own observed range of motion for each arm, and rep-detection thresholds are derived from that instead of a generic default.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">03</div>
-            <h3>Honest, non-diagnostic coaching</h3>
-            <p>An optional AI coaching layer reads your scores and trends, never your video, and says plainly that it
-              isn't a medical diagnosis.</p>
+            <h3>Non-diagnostic coaching</h3>
+            <p>An optional AI coaching layer reads your scores and trends, never your video, and states plainly that it is not a medical diagnosis.</p>
           </div>
         </div>
       </div>
@@ -343,8 +341,7 @@
           <div class="product-card reveal">
             <span class="tag">Backend</span>
             <h3>Analysis Engine</h3>
-            <p>A Flask + MediaPipe service that turns a video into joint angles, rep counts, and per-task scores. It's
-              deployed on Render, with an optional AI coaching feature that runs server-side and never sees raw video.</p>
+            <p>A Flask and MediaPipe service that converts a video into joint angles, rep counts, and per-task scores. It is deployed on Render, with an optional AI coaching feature that runs server-side and never has access to raw video.</p>
           </div>
         </div>
         <div class="badge-row reveal">
@@ -370,8 +367,8 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">Capabilities</span>
-          <h2>The parts that don't fit in a screenshot.</h2>
-          <p>Everything below exists because a single score wasn't the whole story.</p>
+          <h2>Additional capabilities.</h2>
+          <p>Each of the following exists because a single score does not capture the full picture.</p>
         </div>
         <div class="capability-grid">
           <div class="product-card reveal">
@@ -382,7 +379,7 @@
           <div class="product-card reveal">
             <span class="tag">Accuracy</span>
             <h3>Frame-Rate Normalization</h3>
-            <p>Velocity is computed against a fixed reference rate, so a 24fps phone and a 60fps phone land on the same score for the same movement.</p>
+            <p>Velocity is computed against a fixed reference rate, so a 24fps phone and a 60fps phone produce the same score for the same movement.</p>
           </div>
           <div class="product-card reveal">
             <span class="tag">Trust</span>
@@ -397,7 +394,7 @@
           <div class="product-card reveal">
             <span class="tag">Accounts</span>
             <h3>Web Dashboard</h3>
-            <p>An account you can sign in to from any browser. Sign in to the same account from inside the app (Settings &rarr; Web Dashboard Sync) and your real session history shows up here.</p>
+            <p>An account that can be signed in to from any browser. Signing in to the same account from inside the app (Settings &rarr; Web Dashboard Sync) displays your real session history here.</p>
             <a class="btn btn-secondary" href="/dashboard/" style="margin-top:16px;">Sign in</a>
           </div>
         </div>
@@ -416,9 +413,7 @@
             <div>
               <span class="micro-label">CALIBRATION</span>
               <h3>Kinetra Calibration</h3>
-              <p>Most rep-counters assume everyone's "full range of motion" looks the same. Kinetra records your own
-                observed angle range per arm during a short calibration pass, then derives rep-detection thresholds from
-                that, so a smaller natural range isn't scored as a failed rep.</p>
+              <p>Most rep counters assume that everyone's full range of motion looks the same. Kinetra records your own observed angle range for each arm during a short calibration pass, then derives rep-detection thresholds from that, so a smaller natural range is not scored as a failed rep.</p>
               <a class="btn btn-secondary" href="#status">See it in the beta</a>
             </div>
             <ul class="step-list">
@@ -457,7 +452,7 @@
             </div>
             <div class="subfeature">
               <h4>Recalibrate anytime</h4>
-              <p>A visible reset in Settings, since recovery is a moving target and needs a baseline that can move with it.</p>
+              <p>A visible reset in Settings, since recovery changes over time and the baseline needs to be able to change with it.</p>
             </div>
           </div>
         </div>
@@ -469,27 +464,25 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">No Camera Needed</span>
-          <h2>Sometimes two minutes is the whole ask.</h2>
-          <p>Not every visit needs a recording or a score. The 2-Minute Reset is a guided stretch break built for
-            absolutely anyone, no camera, no analysis, nothing saved.</p>
+          <h2>A two-minute option that requires no recording.</h2>
+          <p>Not every session requires a recording or a score. The 2-Minute Reset is a guided stretch break designed for anyone, with no camera, no analysis, and nothing saved.</p>
         </div>
 
         <div class="task-panel reset-panel reveal">
           <div class="task-panel-copy">
             <span class="micro-label">2-MINUTE RESET</span>
-            <h3>Five moves, no equipment, no score.</h3>
-            <p>Neck roll, shoulder rolls, a standing side stretch, a forward fold, and a slow breath, in for a count of
-              4, out for a count of 6. That's the whole thing.</p>
+            <h3>Five guided movements, no equipment required, no score recorded.</h3>
+            <p>Neck roll, shoulder rolls, a standing side stretch, a forward fold, and a slow breathing exercise: in for a count of four, out for a count of six.</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>Nothing recorded, nothing uploaded</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
                   <path d="M20 6L9 17l-5-5" />
-                </svg>No score and no streak pressure, just a break</li>
+                </svg>No score, and no effect on your streak</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
                   <path d="M20 6L9 17l-5-5" />
-                </svg>One tap from the home screen, any time</li>
+                </svg>Accessible with one tap from the home screen at any time</li>
             </ul>
             <a class="btn btn-secondary" href="#status" style="margin-top:24px;">Try it in the beta</a>
           </div>
@@ -509,14 +502,14 @@
         <div>
           <div class="section-head reveal" style="margin-bottom: 34px;">
             <span class="eyebrow">Daily Insights</span>
-            <h2>Fusing how you feel with what the camera measures.</h2>
-            <p>A 30-second, no-camera check-in feeds a rule-based engine that waits for enough evidence before it says anything.</p>
+            <h2>Combining how you feel with what the camera measures.</h2>
+            <p>A 30-second, no-camera check-in feeds a rule-based engine that waits for sufficient evidence before surfacing a pattern.</p>
           </div>
           <div class="insight-blocks">
             <div class="insight-block reveal">
               <h4>Daily Check-In</h4>
               <p>A local, no-network log: an overall feeling rating, multi-select soreness by body region, and an
-                optional note. Takes under 30 seconds, and works even on days with no recording.</p>
+                optional note. It takes under 30 seconds and can be completed on days with no recording.</p>
             </div>
             <div class="insight-block reveal">
               <h4>Insight Engine</h4>
@@ -525,7 +518,7 @@
             </div>
             <div class="insight-block reveal">
               <h4>Evidence over engagement</h4>
-              <p>A correlation only surfaces once there are at least two comparable sore and clear sessions within a 36-hour window, with enough of a gap between them to mean something. Without that, nothing shows up.</p>
+              <p>A correlation surfaces only once there are at least two comparable sore and clear sessions within a 36-hour window, separated by enough of a gap to be meaningful. Otherwise, nothing is shown.</p>
             </div>
           </div>
         </div>
@@ -573,32 +566,32 @@
           <div class="feature-item reveal">
             <div class="num">01</div>
             <h3>Just curious</h3>
-            <p>No real reason beyond wanting to know. Start with a 30-second check-in or the 2-Minute Reset, no camera required, and grow into more from there.</p>
+            <p>No specific reason beyond wanting to know. A 30-second check-in or the 2-Minute Reset requires no camera and can be a starting point before trying the recorded tasks.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">02</div>
             <h3>Posture &amp; desk life</h3>
-            <p>Stiff shoulders and a sore neck from a full day at a screen. A quick posture check or a 2-Minute Reset between meetings beats another coffee break.</p>
+            <p>Stiff shoulders and a sore neck from a full day at a screen. A quick posture check or a 2-Minute Reset between meetings is an alternative to another coffee break.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">03</div>
             <h3>Recovering from something</h3>
-            <p>Working back from an injury, surgery, or health event and want an objective number instead of guessing whether today was actually better than last week.</p>
+            <p>Recovering from an injury, surgery, or health event, and wanting an objective number rather than guessing whether today was actually better than last week.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">04</div>
             <h3>Checking on a family member</h3>
-            <p>Keeping an eye on an aging parent or relative's balance and mobility. Balance and Get Up &amp; Go checks say the most about everyday safety.</p>
+            <p>Monitoring an aging parent or relative's balance and mobility. The Balance and Timed Up and Go checks are the most relevant to everyday safety.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">05</div>
             <h3>Coaches &amp; trainers</h3>
-            <p>Screen a whole roster for movement quality with Team Screening, and see who needs a second look without chasing everyone down individually.</p>
+            <p>Screening a whole roster for movement quality with Team Screening, and identifying who needs a second look without following up with each person individually.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">06</div>
             <h3>Student-athletes &amp; teams</h3>
-            <p>Track consistency across a season, build a check-in streak, and give a coach a shared view without a spreadsheet.</p>
+            <p>Tracking consistency across a season, building a check-in streak, and giving a coach a shared view without a separate spreadsheet.</p>
           </div>
         </div>
       </div>
@@ -609,8 +602,8 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">What's next</span>
-          <h2>The honest roadmap.</h2>
-          <p>Kinetra is in active development. Here's what's actually being worked on, though nothing below has a fixed date yet.</p>
+          <h2>Planned development.</h2>
+          <p>Kinetra is in active development. The items below reflect current work, though none have a fixed release date yet.</p>
         </div>
 
         <div class="roadmap-list reveal">
@@ -678,7 +671,7 @@
             <div class="roadmap-tag tag-exploring">Exploring</div>
           </div>
         </div>
-        <p class="roadmap-note">Have a feature you want? Say so at <a href="/support" class="inline-link">kinetraapp.com/support</a> -- this list changes based on what people ask for.</p>
+        <p class="roadmap-note">Feature requests can be sent to <a href="/support" class="inline-link">kinetraapp.com/support</a>. This list is updated based on that feedback.</p>
       </div>
     </section>
 
@@ -687,8 +680,8 @@
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">Progress</span>
-          <h2>Built in the open, one real milestone at a time.</h2>
-          <p>No usage numbers here yet -- Kinetra hasn't launched. Just what's actually shipped, pulled straight from the commit history.</p>
+          <h2>Development history.</h2>
+          <p>There are no usage figures to report yet, since Kinetra has not launched publicly. The entries below reflect what has actually shipped, drawn directly from the commit history.</p>
         </div>
         <div class="updates-list reveal">
           <div class="update-row">
@@ -749,8 +742,8 @@
         <div class="status-card reveal">
           <div>
             <span class="status-pill"><span class="dot"></span>Private beta &middot; iOS</span>
-            <h2>Currently a one-person build, being tested every day.</h2>
-            <p>Kinetra is a one-person, independent project: no company or funding round behind it, just a working pipeline that turns phone-camera video into a movement score. The source is open for anyone who wants to read it, fork it, or point out what's wrong with it.</p>
+            <h2>A one-person project, tested daily.</h2>
+            <p>Kinetra is an independent, one-person project, with no company or funding round behind it: a working pipeline that turns phone-camera video into a movement score. The source is open for anyone to read, fork, or report issues with.</p>
           </div>
           <div class="status-actions">
             <a class="btn btn-primary" href="https://github.com/wafisharif/kinetra" target="_blank" rel="noopener">View the code
@@ -767,8 +760,8 @@
         <div class="status-card reveal">
           <div>
             <span class="status-pill"><span class="dot"></span>Kinetra Community</span>
-            <h2>There's a volunteer side to this, too.</h2>
-            <p>Kinetra Community is the nonprofit-style effort growing around the app: free movement check-ins for real people, open volunteer involvement, and funding that's fully public through Hack Club Bank.</p>
+            <h2>A volunteer effort also exists alongside the app.</h2>
+            <p>Kinetra Community is a nonprofit-style effort built around the app: free movement check-ins for the public, open volunteer involvement, and funding made fully public through Hack Club Bank.</p>
           </div>
           <div class="status-actions">
             <a class="btn btn-primary" href="/community/">Learn more</a>
