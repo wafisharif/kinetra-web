@@ -1,25 +1,3 @@
-/*
- * Kinetra Dashboard.
- *
- * The account system here is real: sign-up and sign-in call Kinetra's
- * actual backend (see accounts.py in the biomech-app repo), which hashes
- * and stores your password and hands back a signed session token. That
- * token is kept in this browser's localStorage and sent as a Bearer header
- * on every request that needs to know who you are.
- *
- * The stats below are real too, as of the "Web Dashboard Sync" feature:
- * when someone signs in to this same account from inside the Kinetra app
- * (Settings -> Web Dashboard Sync), the app pushes a copy of its local
- * sessions, check-ins, and calibration to the backend (see sync.py), and
- * this page reads that back via GET /sync. Nothing here is generated --
- * an account that has never used the in-app sync feature simply has no
- * data yet, and sees the empty state below instead of a stand-in chart.
- *
- * The streak/badge/session math on this page is a JS port of the same
- * functions in the app (getConsistencyStreaks / getEarnedBadges in
- * app/(tabs)/index.tsx) so the numbers here match what the app itself
- * would show for the same synced data.
- */
 (function () {
   "use strict";
 
@@ -90,7 +68,7 @@
     }).catch(function (err) {
       if (timedOut) {
         throw new Error(
-          "The Kinetra server is taking too long to respond. It's probably waking up from being idle -- wait a bit and try again."
+          "The Kinetra server is taking too long to respond. It's probably waking up from being idle; wait a bit and try again."
         );
       }
       if (err instanceof TypeError) {
@@ -98,7 +76,7 @@
         // and slow to wake -- Render's free tier spins down an idle
         // service, and the first request after that can take 20-50s).
         var wrapped = new Error(
-          "Couldn't reach the Kinetra server. It may be waking up after being idle -- wait a few seconds and try again."
+          "Couldn't reach the Kinetra server. It may be waking up after being idle; wait a few seconds and try again."
         );
         throw wrapped;
       }
