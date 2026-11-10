@@ -1,10 +1,3 @@
-// ============================================================================
-// Kinetra site — interactions + illustrative pose-animation demos.
-// The skeleton renders are stylized procedural animations (sine-driven joint
-// angles), not real motion-capture or a MuJoCo/MyoSuite simulation — they
-// exist to communicate the app's pose-tracking concept visually.
-// ============================================================================
-
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ---------------------------------------------------------------------- */
