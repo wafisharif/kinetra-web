@@ -1,17 +1,3 @@
-/*
- * Kinetra homepage sign-up card.
- *
- * This is the real account system -- same backend, same localStorage keys
- * as the dashboard page (see js/dashboard.js and accounts.py in the
- * biomech-app repo). The apiRequest/signUp/setSession helpers below are
- * deliberately duplicated from dashboard.js rather than shared, so this
- * homepage card can exist without touching the already-working dashboard
- * page at all.
- *
- * On a successful signup the token is stored under the same keys
- * dashboard.js reads, then the visitor is sent straight to /dashboard/,
- * which will recognize the session immediately -- no second login.
- */
 (function () {
   "use strict";
 
@@ -55,10 +41,10 @@
       });
     }).catch(function (err) {
       if (timedOut) {
-        throw new Error("The Kinetra server is taking too long to respond. It's probably waking up from being idle -- wait a bit and try again.");
+        throw new Error("The Kinetra server is taking too long to respond. It's probably waking up from being idle; wait a bit and try again.");
       }
       if (err instanceof TypeError) {
-        throw new Error("Couldn't reach the Kinetra server. It may be waking up after being idle -- wait a few seconds and try again.");
+        throw new Error("Couldn't reach the Kinetra server. It may be waking up after being idle; wait a few seconds and try again.");
       }
       throw err;
     }).finally(function () {
