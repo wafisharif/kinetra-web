@@ -1,1 +1,3 @@
-# Kinetra — marketing site
+# Kinetra
+
+https://www.kinetraapp.com
