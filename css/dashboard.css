@@ -1,17 +1,9 @@
-/* Kinetra Dashboard preview -- built entirely from the site's existing
-   design tokens (see css/legal.css / style.css) so it matches the rest of
-   kinetraapp.com without introducing a second visual language. */
-
 .kd-main {
   max-width: 980px;
   margin: 0 auto;
   padding: 88px var(--section-inline) 88px;
 }
 
-/* The dashboard's first screen (sign-in/sign-up) is much shorter than a
-   legal page, so it inherits a tighter top gap and tighter vertical rhythm
-   than .legal-main's defaults -- those are tuned for a page that opens with
-   a big heading and keeps going, not a small card. */
 .kd-main .legal-back {
   margin-bottom: 28px;
 }
