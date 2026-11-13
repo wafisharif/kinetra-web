@@ -140,7 +140,7 @@
         <div class="hero-copy">
           <h1>Track movement.<br />Understand your <em class="accent" id="heroCycle">recovery</em>.</h1>
           <p class="lede">Kinetra turns any phone camera into a pose-tracking lab. It counts reps, scores smoothness
-            and symmetry, and fuses that with how you actually feel, with no wearable at all.</p>
+            and symmetry, and fuses that with how you feel. The process doesn't require any wearables at all.</p>
           <div class="hero-cta-row">
             <a class="btn btn-primary" href="#status">Join the iOS beta</a>
             <a class="btn btn-secondary" href="https://github.com/wafisharif/kinetra" target="_blank" rel="noopener">
@@ -161,7 +161,7 @@
           <div class="hero-signup" id="heroSignup">
             <div class="hero-signup-head">
               <strong>Try Kinetra free</strong>
-              <span>Real account, no credit card, takes 10 seconds.</span>
+              <span>No credit card and takes 10 seconds.</span>
             </div>
             <form id="hs-form" class="hero-signup-form">
               <input id="hs-name" type="text" autocomplete="name" placeholder="Your name" aria-label="Name" required />
@@ -226,7 +226,7 @@
           <div class="product-card reveal">
             <span class="tag">Open source</span>
             <h3>The complete source is public</h3>
-            <p>The app and the analysis backend are both published on GitHub. This is not a separate marketing repository; it is the code currently running in production.</p>
+            <p>The app and the analysis backend are both published on GitHub.</p>
             <div class="proof-card-meta">
               <div class="proof-stat"><strong id="ghCommits">&mdash;</strong>commits</div>
               <div class="proof-stat"><strong id="ghStars">&mdash;</strong>stars</div>
@@ -237,13 +237,13 @@
           <div class="product-card reveal">
             <span class="tag">Automated testing</span>
             <h3>Automated tests before every merge</h3>
-            <p>The scoring backend runs a pytest suite, and the app is checked with end-to-end tests that exercise its real screens before any change is released, rather than relying on manual review alone.</p>
+            <p>The scoring backend runs a pytest suite, and the app is checked with end-to-end tests that exercise its real screens before any change is released.</p>
             <a class="btn btn-secondary" href="https://github.com/wafisharif/kinetra/actions" target="_blank" rel="noopener" style="margin-top:18px;">See CI runs</a>
           </div>
           <div class="product-card reveal">
             <span class="tag">Stated limitations</span>
             <h3>The app states its own limitations</h3>
-            <p>Every build includes a Transparency page that states plainly what is measured and where a single camera falls short. The following is quoted directly from that page:</p>
+            <p>Every build includes a Transparency page that states what is measured and where a single camera falls short. The following is quoted directly from that page:</p>
             <blockquote class="proof-quote">
               &ldquo;A single 2D camera cannot fully resolve depth, so movement directly toward or away from the camera is measured less reliably than side-to-side movement.&rdquo;
               <cite>&mdash; Kinetra app, Transparency page</cite>
@@ -275,7 +275,7 @@
           <div class="feature-item reveal">
             <div class="num">03</div>
             <h3>Non-diagnostic coaching</h3>
-            <p>An optional AI coaching layer reads your scores and trends, never your video, and states plainly that it is not a medical diagnosis.</p>
+            <p>An optional AI coaching layer reads your scores and trends and states plainly that it is not a medical diagnosis.</p>
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Task Coverage</span>
           <h2>One camera, six movement tests.</h2>
-          <p>Every mode uses the same pose pipeline, tuned to the joints and rep pattern that matter for that task.</p>
+          <p>Every mode uses the same pose pipeline, and is tuned to the joints and rep pattern that matter for that task.</p>
         </div>
 
         <div class="task-tabs" id="taskTabs" role="tablist">
@@ -341,7 +341,7 @@
           <div class="product-card reveal">
             <span class="tag">Backend</span>
             <h3>Analysis Engine</h3>
-            <p>A Flask and MediaPipe service that converts a video into joint angles, rep counts, and per-task scores. It is deployed on Render, with an optional AI coaching feature that runs server-side and never has access to raw video.</p>
+            <p>A Flask and MediaPipe service that converts a video into joint angles, rep counts, and per-task scores. It is deployed on Render, with an optional AI coaching feature that runs server-side.</p>
           </div>
         </div>
         <div class="badge-row reveal">
@@ -368,7 +368,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Capabilities</span>
           <h2>Additional capabilities.</h2>
-          <p>Each of the following exists because a single score does not capture the full picture.</p>
+          <p>Each of the following exists, because a single score does not capture the full picture.</p>
         </div>
         <div class="capability-grid">
           <div class="product-card reveal">
@@ -384,17 +384,17 @@
           <div class="product-card reveal">
             <span class="tag">Trust</span>
             <h3>Transparency Page</h3>
-            <p>The app explains, in plain language, exactly what's measured, where a single 2D camera falls short, and what happens to your video after analysis.</p>
+            <p>The app explains exactly what's measured, where a single 2D camera falls short, and what happens to your video after analysis.</p>
           </div>
           <div class="product-card reveal">
             <span class="tag">Motivation</span>
             <h3>Streaks &amp; Badges</h3>
-            <p>Earned by showing up and testing fully, never by posting a high score. A three-day streak counts the same whether the score was a 62 or a 96.</p>
+            <p>Earned by showing up and testing fully. A three-day streak counts the same, regardless of the score.</p>
           </div>
           <div class="product-card reveal">
             <span class="tag">Accounts</span>
             <h3>Web Dashboard</h3>
-            <p>An account that can be signed in to from any browser. Signing in to the same account from inside the app (Settings &rarr; Web Dashboard Sync) displays your real session history here.</p>
+            <p>An account that can be signed in to from any browser. Signing in to the same account from inside the app (Settings &rarr; Web Dashboard Sync) displays your session history here.</p>
             <a class="btn btn-secondary" href="/dashboard/" style="margin-top:16px;">Sign in</a>
           </div>
         </div>
@@ -443,7 +443,7 @@
             <div class="subfeature">
               <h4>Per-side persistence</h4>
               <p>Left and right calibration values are stored and applied independently, so one side's data can never
-                silently override the other's.</p>
+                override the other's.</p>
             </div>
             <div class="subfeature">
               <h4>Six task profiles</h4>
@@ -452,7 +452,7 @@
             </div>
             <div class="subfeature">
               <h4>Recalibrate anytime</h4>
-              <p>A visible reset in Settings, since recovery changes over time and the baseline needs to be able to change with it.</p>
+              <p>A reset in Settings, since recovery changes over time and the baseline needs to be able to change with it.</p>
             </div>
           </div>
         </div>
@@ -465,7 +465,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">No Camera Needed</span>
           <h2>A two-minute option that requires no recording.</h2>
-          <p>Not every session requires a recording or a score. The 2-Minute Reset is a guided stretch break designed for anyone, with no camera, no analysis, and nothing saved.</p>
+          <p>Not every session requires a recording or a score. The 2-Minute Reset is a guided stretch break designed for anyone, with no camera or analysis and nothing saved.</p>
         </div>
 
         <div class="task-panel reset-panel reveal">
@@ -576,7 +576,7 @@
           <div class="feature-item reveal">
             <div class="num">03</div>
             <h3>Recovering from something</h3>
-            <p>Recovering from an injury, surgery, or health event, and wanting an objective number rather than guessing whether today was actually better than last week.</p>
+            <p>Recovering from an injury, surgery, or health event, and wanting an objective number rather than guessing whether today's movement was better than last week's.</p>
           </div>
           <div class="feature-item reveal">
             <div class="num">04</div>
@@ -638,7 +638,7 @@
           <div class="roadmap-row">
             <div>
               <div class="roadmap-title">PDF Session Reports</div>
-              <p class="roadmap-desc">A clean, printable summary of a session or a date range, built for handing to a coach or physical therapist.</p>
+              <p class="roadmap-desc">A printable summary of a session or a date range, built for handing to a coach or physical therapist.</p>
             </div>
             <div class="roadmap-tag tag-planned">Planned</div>
           </div>
@@ -666,7 +666,7 @@
           <div class="roadmap-row">
             <div>
               <div class="roadmap-title">Multi-Language Support</div>
-              <p class="roadmap-desc">Kinetra is English-only today. Broader language support is something worth getting right, not rushing.</p>
+              <p class="roadmap-desc">Kinetra is English-only today. Broader language support is something we're currently exploring.</p>
             </div>
             <div class="roadmap-tag tag-exploring">Exploring</div>
           </div>
@@ -681,7 +681,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Progress</span>
           <h2>Development history.</h2>
-          <p>There are no usage figures to report yet, since Kinetra has not launched publicly. The entries below reflect what has actually shipped, drawn directly from the commit history.</p>
+          <p>There are no usage figures to report yet, since Kinetra has not launched publicly. The entries below reflect what has shipped, drawn from the commit history.</p>
         </div>
         <div class="updates-list reveal">
           <div class="update-row">
@@ -705,7 +705,7 @@
             <div class="update-date">September 2026</div>
             <div>
               <div class="update-title">Web dashboard goes live</div>
-              <p class="update-desc">Real account sign-up and sign-in, plus two-way sync -- scores, streaks, and calibration pushed from the app now show up in the browser dashboard too.</p>
+              <p class="update-desc">Account sign-up and sign-in, plus two-way sync -- scores, streaks, and calibration pushed from the app now show up in the browser dashboard too.</p>
             </div>
           </div>
           <div class="update-row">
@@ -729,7 +729,7 @@
             <div class="update-date">April 2026</div>
             <div>
               <div class="update-title">Kinetra starts as a one-person project</div>
-              <p class="update-desc">Initial commit. No company, no funding round -- just an idea about turning a phone camera into a movement score.</p>
+              <p class="update-desc">Initial commit. No company or funding round, just an idea about turning a phone camera into a movement score.</p>
             </div>
           </div>
         </div>
@@ -827,7 +827,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; <span id="year"></span> Kinetra. Independent project, not a medical device.</span>
+        <span>&copy; <span id="year"></span> Kinetra.</span>
         <span>Built in Queens, NY</span>
       </div>
     </div>
