@@ -53,6 +53,18 @@
     if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
   });
 
+  // Picking a link (e.g. Project -> Roadmap, which only scrolls this page)
+  // should close the open dropdown and the mobile menu; otherwise they stay
+  // open on top of the section the visitor just jumped to.
+  if (links) {
+    links.addEventListener('click', (e) => {
+      if (!e.target.closest('a[href]')) return;
+      closeAllDropdowns();
+      links.classList.remove('is-open');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAllDropdowns();
   });
