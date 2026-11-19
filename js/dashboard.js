@@ -14,6 +14,7 @@
       localStorage.setItem(TOKEN_KEY, token);
       localStorage.setItem(USER_KEY, JSON.stringify(user));
     } catch (e) {}
+    document.documentElement.classList.add("is-signed-in");
   }
   function getStoredUser() {
     try {
@@ -26,6 +27,7 @@
       localStorage.removeItem(TOKEN_KEY);
       localStorage.removeItem(USER_KEY);
     } catch (e) {}
+    document.documentElement.classList.remove("is-signed-in");
   }
 
   // ---------- backend calls ----------
@@ -523,6 +525,10 @@
     if (tabSignIn && tabSignUp) {
       tabSignIn.addEventListener("click", function () { setTab("signin"); });
       tabSignUp.addEventListener("click", function () { setTab("signup"); });
+    }
+    // Header "Sign up" links here with ?mode=signup -- open on that tab.
+    if (tabSignIn && tabSignUp && /[?&]mode=signup\b/.test(window.location.search)) {
+      setTab("signup");
     }
 
     function renderSyncedData(data) {

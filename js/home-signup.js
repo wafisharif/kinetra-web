@@ -14,6 +14,7 @@
       localStorage.setItem(TOKEN_KEY, token);
       localStorage.setItem(USER_KEY, JSON.stringify(user));
     } catch (e) {}
+    document.documentElement.classList.add("is-signed-in");
   }
 
   var REQUEST_TIMEOUT_MS = 45000;

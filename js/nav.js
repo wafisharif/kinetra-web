@@ -3,6 +3,18 @@
    so the header behaves the same on the homepage as it does on the
    support, privacy, terms, and dashboard pages. */
 (function nav() {
+  // Keep the header's Sign in / Sign up vs Dashboard buttons in sync with
+  // the stored session (also when signing in/out in another tab).
+  const TOKEN_KEY = 'kinetra_dashboard_token_v1';
+  function syncAuthNav() {
+    let signedIn = false;
+    try { signedIn = !!localStorage.getItem(TOKEN_KEY); } catch (e) {}
+    document.documentElement.classList.toggle('is-signed-in', signedIn);
+  }
+  syncAuthNav();
+  window.addEventListener('storage', syncAuthNav);
+  window.kinetraSyncAuthNav = syncAuthNav;
+
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   const dropdowns = Array.from(document.querySelectorAll('.nav-dropdown'));

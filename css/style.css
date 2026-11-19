@@ -1643,7 +1643,8 @@ html.js-reveal .reveal.is-visible {
      strip keeps only the primary CTA and the hamburger; Sign in and
      GitHub move into the opened mobile menu instead of disappearing. */
   .nav-actions .icon-btn,
-  .nav-actions .nav-signin {
+  .nav-actions .nav-signin,
+  .nav-actions .nav-beta {
     display: none;
   }
 
@@ -1658,7 +1659,7 @@ html.js-reveal .reveal.is-visible {
     border-top: 1px solid var(--line-soft);
   }
 
-  .nav-mobile-extra .nav-signin {
+  .nav-mobile-extra .btn {
     width: 100%;
   }
 
@@ -1766,4 +1767,55 @@ html.js-reveal .reveal.is-visible {
   .partner-grid { grid-template-columns: 1fr; }
   .partner-tile { min-height: 160px; }
   .partner-logo { height: 40px; }
+}
+
+
+/* ==========================================================================
+   Header auth buttons (Sign in text link + Sign up pill, swapped for a
+   Dashboard pill when signed in). <html class="is-signed-in"> is set by a
+   tiny inline script in each page's <head>, so the right buttons show on
+   first paint with no flash.
+   ========================================================================== */
+.nav-text-link {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-body);
+  padding: 8px 2px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.nav-text-link:hover {
+  color: var(--ink-strong);
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding-inline: 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--ink-strong);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line-strong);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-pill:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.36);
+}
+
+.is-signed-in [data-auth="out"] {
+  display: none !important;
+}
+
+html:not(.is-signed-in) [data-auth="in"] {
+  display: none !important;
 }
