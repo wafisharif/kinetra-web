@@ -1702,13 +1702,29 @@ html.js-reveal .reveal.is-visible {
 /* ==========================================================================
    Partners page logo grid
    ========================================================================== */
+/* Tighten the space between the page head and the logo grid. */
+.partners-head {
+  padding-bottom: 0;
+}
+
+.partners-logos {
+  padding-top: 56px;
+}
+
+/* Flex (not grid) so a partial last row centers instead of hugging left. */
 .partner-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
+}
+
+.partner-grid > .partner-tile {
+  flex: 0 1 calc((100% - 32px) / 3);
+  min-width: 0;
 }
 
 .partner-tile {
@@ -1760,11 +1776,12 @@ html.js-reveal .reveal.is-visible {
 }
 
 @media (max-width: 980px) {
-  .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .partner-grid > .partner-tile { flex-basis: calc((100% - 16px) / 2); }
 }
 
 @media (max-width: 520px) {
-  .partner-grid { grid-template-columns: 1fr; }
+  .partner-grid > .partner-tile { flex-basis: 100%; }
+  .partners-logos { padding-top: 40px; }
   .partner-tile { min-height: 160px; }
   .partner-logo { height: 40px; }
 }
